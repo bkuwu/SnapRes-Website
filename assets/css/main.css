@@ -1,0 +1,476 @@
+/* =========================================================================
+   SnapRes marketing site — base + layout + components
+   ========================================================================= */
+
+*, *::before, *::after { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+body {
+  /* faint pixel/resolution grid — the one visual texture we allow
+     ourselves, tied directly to "resolution" as the subject */
+  background-image:
+    radial-gradient(var(--border-soft) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-position: -14px -14px;
+  transition: background-color var(--dur-med) var(--ease-out), color var(--dur-med) var(--ease-out);
+}
+
+[data-theme="light"] body { background-image: radial-gradient(var(--border) 1px, transparent 1px); }
+
+::selection { background: var(--text-main); color: var(--bg); }
+
+h1, h2, h3, h4 {
+  font-family: var(--font-title);
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+p { margin: 0; line-height: 1.65; color: var(--text-dim); }
+
+a { color: inherit; text-decoration: none; }
+
+img { max-width: 100%; display: block; }
+
+button { font-family: var(--font-body); border: none; background: none; cursor: pointer; color: inherit; }
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 28px;
+}
+
+/* -------------------------------------------------------------------- */
+/* Page transition veil                                                  */
+/* -------------------------------------------------------------------- */
+.page-veil {
+  position: fixed;
+  inset: 0;
+  background: var(--bg);
+  z-index: 9999;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity .38s var(--ease-out);
+}
+.page-veil.is-active { opacity: 1; pointer-events: all; }
+body.is-loaded .page-veil { opacity: 0; }
+body { opacity: 0; }
+body.is-loaded { opacity: 1; transition: opacity .5s var(--ease-out); }
+
+/* -------------------------------------------------------------------- */
+/* Nav                                                                    */
+/* -------------------------------------------------------------------- */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 28px;
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: color-mix(in srgb, var(--bg) 78%, transparent);
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease-out), background var(--dur-med) var(--ease-out);
+}
+.nav.is-scrolled { border-bottom-color: var(--border); }
+
+.nav__brand { display: flex; align-items: center; gap: 10px; }
+.nav__mark { width: 26px; height: 26px; }
+.nav__mark img { width: 100%; height: 100%; }
+.nav__word {
+  font-family: var(--font-title);
+  font-size: 17px;
+  letter-spacing: -0.02em;
+}
+
+.nav__links {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 5px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+.nav__link {
+  font-family: var(--font-title);
+  font-size: 12.5px;
+  padding: 9px 18px;
+  border-radius: 999px;
+  color: var(--text-dim);
+  transition: color .35s var(--ease-out), background .35s var(--ease-out), box-shadow .35s var(--ease-out);
+}
+.nav__link:hover { color: var(--text-main); box-shadow: 0 0 0 6px var(--glow); }
+.nav__link.is-active { background: var(--text-main); color: var(--bg); }
+
+.nav__tools { display: flex; align-items: center; gap: 8px; }
+
+.icon-btn {
+  width: 38px; height: 38px;
+  display: grid; place-items: center;
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  color: var(--text-main);
+  transition: box-shadow .4s var(--ease-out), border-color .4s var(--ease-out), transform .3s var(--ease-snap);
+}
+.icon-btn:hover { box-shadow: 0 0 0 9px var(--glow); border-color: var(--text-main); transform: translateY(-2px); }
+.icon-btn:active { transform: translateY(0) scale(.94); }
+.icon-btn svg { width: 17px; height: 17px; }
+
+.nav__burger { display: none; }
+
+/* -------------------------------------------------------------------- */
+/* Buttons                                                                */
+/* -------------------------------------------------------------------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-title);
+  font-size: 13.5px;
+  letter-spacing: .01em;
+  padding: 15px 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  position: relative;
+  transition: transform var(--dur-fast) var(--ease-snap), box-shadow var(--dur-fast) var(--ease-out), background var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out), border-color var(--dur-fast) var(--ease-out);
+}
+.btn:active { transform: scale(.96); }
+
+.btn--primary {
+  background: var(--btn-idle);
+  color: var(--btn-text);
+}
+.btn--primary:hover {
+  background: var(--btn-hover);
+  color: var(--btn-hover-text);
+  box-shadow: 0 0 0 11px var(--glow), 0 24px 52px -18px var(--glow-strong);
+  transform: translateY(-3px);
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--text-main);
+  border-color: var(--border);
+}
+.btn--ghost:hover {
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 11px var(--glow), 0 20px 44px -20px var(--glow-strong);
+  transform: translateY(-3px);
+}
+
+.btn--lg { padding: 19px 38px; font-size: 15px; border-radius: var(--radius-md); }
+
+.btn__bracket-frame { position: relative; display: inline-flex; }
+
+/* Corner brackets that "snap" onto buttons on hover — echoes the
+   SnapRes app-icon crosshair and the product's core verb: snap. */
+.bracket {
+  position: absolute;
+  width: 12px; height: 12px;
+  border: 0 solid var(--text-main);
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-snap);
+}
+.bracket--tl { top: -8px; left: -8px; border-top-width: 2px; border-left-width: 2px; transform: translate(6px,6px); }
+.bracket--tr { top: -8px; right: -8px; border-top-width: 2px; border-right-width: 2px; transform: translate(-6px,6px); }
+.bracket--bl { bottom: -8px; left: -8px; border-bottom-width: 2px; border-left-width: 2px; transform: translate(6px,-6px); }
+.bracket--br { bottom: -8px; right: -8px; border-bottom-width: 2px; border-right-width: 2px; transform: translate(-6px,-6px); }
+.btn__bracket-frame:hover .bracket,
+.snap-target:hover .bracket,
+.snap-target.is-active .bracket {
+  opacity: 1;
+  transform: translate(0,0);
+}
+
+/* -------------------------------------------------------------------- */
+/* Snap-frame — the site's signature reveal, used around screenshots     */
+/* -------------------------------------------------------------------- */
+.snapframe {
+  position: relative;
+  display: inline-block;
+  line-height: 0;
+}
+.snapframe::before,
+.snapframe::after,
+.snapframe .sf-corner {
+  content: "";
+  position: absolute;
+  width: 34px; height: 34px;
+  border: 3px solid var(--text-main);
+  opacity: 0;
+  transition: opacity .5s var(--ease-out), transform .7s var(--ease-snap);
+  transition-delay: .05s;
+}
+.snapframe::before { top: -14px; left: -14px; border-right: 0; border-bottom: 0; transform: translate(-26px,-26px); }
+.snapframe::after { bottom: -14px; right: -14px; border-left: 0; border-top: 0; transform: translate(26px,26px); }
+.snapframe .sf-corner--tr { top: -14px; right: -14px; border-left: 0; border-bottom: 0; transform: translate(26px,-26px); }
+.snapframe .sf-corner--bl { bottom: -14px; left: -14px; border-right: 0; border-top: 0; transform: translate(-26px,26px); }
+
+.snapframe.is-snapped::before,
+.snapframe.is-snapped::after,
+.snapframe.is-snapped .sf-corner {
+  opacity: 1;
+  transform: translate(0,0);
+}
+
+.snapframe__shot {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  box-shadow: 0 40px 80px -32px rgba(0,0,0,.55);
+  background: var(--panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 26px;
+}
+[data-theme="light"] .snapframe__shot { box-shadow: 0 40px 80px -36px rgba(15,15,15,.28); }
+.snapframe__shot img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: var(--radius-md);
+}
+
+/* Showcase screenshots are already tightly cropped to just the in-app
+   panel, so the frame should hug the image at its own aspect ratio
+   instead of forcing a fixed height — the old fixed-height + object-fit:
+   contain combo left visible --panel letterboxing around any screenshot
+   that didn't match the box's ratio (worst on the tall setup-guide one). */
+.showrow__image .snapframe__shot {
+  padding: 0;
+  height: auto;
+}
+.showrow__image .snapframe__shot img {
+  width: 100%;
+  height: auto;
+  object-fit: initial;
+}
+
+.showrow {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 56px;
+  margin-bottom: 130px;
+}
+.showrow:last-child { margin-bottom: 0; }
+.showrow__text { flex: 0.82 1 300px; }
+.showrow__image { flex: 1.18 1 380px; }
+
+/* -------------------------------------------------------------------- */
+/* Reveal-on-scroll utilities                                            */
+/* -------------------------------------------------------------------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity .8s var(--ease-out), transform .8s var(--ease-out);
+}
+.reveal.is-in { opacity: 1; transform: translateY(0); }
+.reveal-up { transform: translateY(48px); }
+.reveal-down { transform: translateY(-32px); }
+.reveal-left { transform: translateX(-40px); }
+.reveal-right { transform: translateX(40px); }
+.reveal.is-in.reveal-left,
+.reveal.is-in.reveal-right { transform: translateX(0); }
+
+.stagger > * { transition-delay: calc(var(--i, 0) * 90ms); }
+
+/* -------------------------------------------------------------------- */
+/* Section rhythm                                                        */
+/* -------------------------------------------------------------------- */
+.section { padding: 128px 0; position: relative; }
+.section--tight { padding: 88px 0; }
+.eyebrow {
+  font-family: var(--font-title);
+  font-size: 11.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-dimmer);
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--text-main);
+  display: inline-block;
+}
+
+hr.rule {
+  border: none;
+  height: 1px;
+  background: var(--border);
+  margin: 0;
+}
+
+/* -------------------------------------------------------------------- */
+/* Contact form (About page)                                             */
+/* -------------------------------------------------------------------- */
+.contact-form { display: flex; flex-direction: column; gap: 12px; }
+.contact-form__row { display: flex; gap: 12px; flex-wrap: wrap; }
+.contact-form input,
+.contact-form textarea {
+  flex: 1;
+  min-width: 180px;
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 13px 15px;
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-main);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.contact-form input::placeholder,
+.contact-form textarea::placeholder { color: var(--text-dimmer); }
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 6px var(--glow);
+}
+.contact-form textarea { resize: vertical; font-family: var(--font-body); }
+.contact-form .btn { align-self: flex-start; margin-top: 4px; }
+
+/* -------------------------------------------------------------------- */
+/* Fixed 2x2 tile grid — used where item count is known (4), so we don't  */
+/* get orphan empty cells the way auto-fit can leave behind.              */
+/* -------------------------------------------------------------------- */
+.grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  max-width: 760px;
+  margin: 0 auto;
+}
+@media (max-width: 640px) {
+  .grid-2x2 { grid-template-columns: 1fr; }
+}
+
+/* -------------------------------------------------------------------- */
+/* Footer                                                                 */
+/* -------------------------------------------------------------------- */
+.footer { padding: 56px 0 64px; }
+.footer__top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding-bottom: 36px;
+}
+.footer__brand p { max-width: 320px; margin-top: 10px; font-size: 13.5px; }
+.footer__cols { display: flex; gap: 64px; flex-wrap: wrap; }
+.footer__col h4 { font-size: 12px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-dimmer); margin-bottom: 14px; }
+.footer__col a, .footer__col button {
+  display: block;
+  font-size: 13.5px;
+  color: var(--text-dim);
+  padding: 5px 0;
+  transition: color var(--dur-fast) var(--ease-out);
+  text-align: left;
+}
+.footer__col a:hover, .footer__col button:hover { color: var(--text-main); }
+
+.footer__bottom {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 26px;
+}
+.footer__copy { font-size: 12px; color: var(--text-dimmer); }
+
+/* language switcher */
+.lang-select {
+  position: relative;
+}
+.lang-select__btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12.5px;
+  font-family: var(--font-title);
+  padding: 9px 14px;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  color: var(--text-main);
+  transition: border-color var(--dur-fast) var(--ease-out), box-shadow var(--dur-fast) var(--ease-out);
+}
+.lang-select__btn:hover { border-color: var(--text-main); box-shadow: 0 0 0 6px var(--glow); }
+.lang-select__btn svg { width: 12px; height: 12px; transition: transform var(--dur-fast) var(--ease-out); }
+.lang-select.is-open .lang-select__btn svg { transform: rotate(180deg); }
+
+.lang-select__menu {
+  position: absolute;
+  bottom: calc(100% + 10px);
+  right: 0;
+  min-width: 168px;
+  max-height: 260px;
+  overflow-y: auto;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 6px;
+  display: grid;
+  gap: 2px;
+  opacity: 0;
+  transform: translateY(8px) scale(.98);
+  pointer-events: none;
+  transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-snap);
+  box-shadow: 0 24px 48px -20px rgba(0,0,0,.5);
+}
+.lang-select.is-open .lang-select__menu { opacity: 1; transform: translateY(0) scale(1); pointer-events: all; }
+.lang-select__opt {
+  font-size: 13px;
+  padding: 9px 12px;
+  border-radius: var(--radius-sm);
+  color: var(--text-dim);
+  text-align: left;
+  width: 100%;
+}
+.lang-select__opt:hover { background: var(--bg); color: var(--text-main); }
+.lang-select__opt.is-active { color: var(--text-main); font-family: var(--font-title); }
+
+/* -------------------------------------------------------------------- */
+/* Responsive                                                             */
+/* -------------------------------------------------------------------- */
+@media (max-width: 860px) {
+  .nav__links { position: fixed; top: 74px; left: 16px; right: 16px; flex-direction: column; align-items: stretch; padding: 8px; border-radius: var(--radius-md); background: var(--panel); opacity: 0; pointer-events: none; transform: translateY(-8px); transition: opacity var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out); }
+  .nav__links.is-open { opacity: 1; pointer-events: all; transform: translateY(0); }
+  .nav__link { text-align: center; padding: 13px 18px; }
+  .nav__burger { display: grid; place-items: center; }
+  .section { padding: 84px 0; }
+  .footer__top { flex-direction: column; }
+  .showrow { flex-direction: column !important; gap: 28px !important; margin-bottom: 68px !important; }
+  .showrow__text, .showrow__image { order: initial !important; flex-basis: auto !important; }
+  .showrow__image { order: 2 !important; }
+  .showrow__text { order: 1 !important; }
+  .showrow > .reveal-left, .showrow > .reveal-right { transform: translateY(28px) !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
