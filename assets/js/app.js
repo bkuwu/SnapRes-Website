@@ -209,6 +209,29 @@
   }
 
   /* ---------------------------------------------------------------------
+     Hero video card — thumbnail facade that swaps itself for a real
+     YouTube embed (autoplaying) on click, so nothing loads from YouTube
+     until the visitor actually wants to watch.
+     --------------------------------------------------------------------- */
+  function initVideoCard() {
+    document.querySelectorAll("[data-youtube-card]").forEach(function (card) {
+      var btn = card.querySelector(".video-card__playbtn");
+      var id = card.getAttribute("data-yt-id");
+      if (!btn || !id) return;
+      btn.addEventListener("click", function () {
+        var iframe = document.createElement("iframe");
+        iframe.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
+        iframe.title = "SnapRes showcase video";
+        iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+        iframe.allowFullscreen = true;
+        iframe.frameBorder = "0";
+        iframe.style.cssText = "position:absolute;inset:0;width:100%;height:100%;";
+        btn.replaceWith(iframe);
+      }, { once: true });
+    });
+  }
+
+  /* ---------------------------------------------------------------------
      Boot
      --------------------------------------------------------------------- */
   document.addEventListener("DOMContentLoaded", function () {
@@ -219,5 +242,6 @@
     initReveals();
     initTransitions();
     initContactForm();
+    initVideoCard();
   });
 })();
