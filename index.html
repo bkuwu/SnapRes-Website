@@ -41,16 +41,44 @@
 </nav>
 
 <!-- ============================= HERO ============================= -->
-<header class="section" style="padding-top:172px; padding-bottom:76px;">
-  <div class="container" style="text-align:center; max-width:940px;">
-    <p class="eyebrow reveal" style="justify-content:center; margin:0 auto 26px;" data-i18n="hero_eyebrow">Competitive Resolution Switcher</p>
-    <h1 class="reveal" style="font-size:clamp(48px,9vw,92px); line-height:1.01; transition-delay:.06s;">
-      <span data-i18n="hero_title_1">Snap to your</span><br>
-      <span data-i18n="hero_title_2" style="color:var(--text-dimmer);">stretched res.</span>
-    </h1>
-    <p class="reveal" style="font-size:18px; max-width:600px; margin:30px auto 0; transition-delay:.12s;" data-i18n="hero_sub">
-      One click swaps your display to the exact stretched resolution you play on — then snaps it back after. No more digging through Windows settings mid-warmup.
-    </p>
+<header class="section hero-section">
+  <div class="container" style="max-width:1440px;">
+    <div class="hero__grid">
+      <div class="hero__content">
+        <div class="hero__icon reveal" style="transition-delay:.02s;">
+          <img data-logo data-src-dark="assets/img/Logo_Dark.png" data-src-light="assets/img/Logo_Main.png" src="assets/img/Logo_Dark.png" alt="" width="150" height="150">
+        </div>
+        <div class="hero__text">
+          <p class="eyebrow reveal" data-i18n="hero_eyebrow">Competitive Resolution Switcher</p>
+          <h1 class="reveal" style="font-size:clamp(54px,6.6vw,96px); line-height:1.02; transition-delay:.06s;">
+            <span data-i18n="hero_title_1">Snap to your</span><br>
+            <span data-i18n="hero_title_2" style="color:var(--text-dimmer);">stretched res.</span>
+          </h1>
+          <p class="reveal" style="font-size:19px; max-width:540px; margin-top:28px; transition-delay:.12s;" data-i18n="hero_sub">
+            One click swaps your display to the exact stretched resolution you play on — then snaps it back after. No more digging through Windows settings mid-warmup.
+          </p>
+        </div>
+      </div>
+
+      <div class="video-card reveal reveal-right" style="transition-delay:.18s;" data-youtube-card data-yt-id="BUdp-Yn4ZK0">
+        <div class="video-card__thumb">
+          <span class="video-card__corner video-card__corner--tl"></span>
+          <span class="video-card__corner video-card__corner--tr"></span>
+          <span class="video-card__corner video-card__corner--bl"></span>
+          <span class="video-card__corner video-card__corner--br"></span>
+          <button class="video-card__playbtn" type="button" aria-label="Play the SnapRes showcase video">
+            <img src="https://img.youtube.com/vi/BUdp-Yn4ZK0/maxresdefault.jpg" alt="SnapRes showcase video thumbnail" loading="eager">
+            <span class="video-card__play" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            </span>
+          </button>
+        </div>
+        <div class="video-card__label">
+          <span class="video-card__eyebrow" data-i18n="hero_video_eyebrow">SnapRes in action</span>
+          <span class="video-card__title" data-i18n="hero_video_title">Watch the full showcase on YouTube</span>
+        </div>
+      </div>
+    </div>
   </div>
 </header>
 
