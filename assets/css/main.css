@@ -197,6 +197,164 @@ body.is-loaded { opacity: 1; transition: opacity .5s var(--ease-out); }
 }
 
 /* -------------------------------------------------------------------- */
+/* Hero — full first screen: icon + text left, video showcase right      */
+/* -------------------------------------------------------------------- */
+header.hero-section {
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-top: 108px;
+  padding-bottom: 56px;
+  box-sizing: border-box;
+}
+
+.hero__grid {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 76px;
+  text-align: left;
+  width: 100%;
+}
+.hero__content {
+  display: flex;
+  align-items: center;
+  gap: 34px;
+  flex: 1 1 540px;
+  max-width: 700px;
+}
+.hero__text { min-width: 0; }
+
+.hero__icon {
+  flex: none;
+  width: clamp(100px, 9vw, 170px);
+  height: clamp(100px, 9vw, 170px);
+  display: grid;
+  place-items: center;
+}
+.hero__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* -------------------------------------------------------------------- */
+/* Video showcase card — bigger, widescreen, plays inline on click.      */
+/* Corner brackets echo the app's own crosshair mark so it reads as      */
+/* "highlighted" without leaving the grayscale theme.                    */
+/* -------------------------------------------------------------------- */
+.video-card {
+  flex: 1 1 640px;
+  max-width: 760px;
+  width: 100%;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  background: var(--panel);
+  overflow: hidden;
+  box-shadow: 0 0 0 8px var(--glow), 0 50px 100px -34px rgba(0,0,0,.55);
+  transition: transform .45s var(--ease-snap), box-shadow .45s var(--ease-out), border-color .4s var(--ease-out);
+}
+[data-theme="light"] .video-card { box-shadow: 0 0 0 8px var(--glow), 0 50px 100px -38px rgba(15,15,15,.22); }
+.video-card:hover {
+  transform: translateY(-4px);
+  border-color: var(--text-main);
+  box-shadow: 0 0 0 12px var(--glow-strong), 0 54px 110px -32px rgba(0,0,0,.6);
+}
+
+.video-card__thumb {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: var(--bg);
+  overflow: hidden;
+}
+.video-card__playbtn {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  display: block;
+}
+.video-card__playbtn img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.video-card__thumb::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 45%, rgba(0,0,0,.5) 100%);
+  pointer-events: none;
+}
+.video-card__thumb iframe { display: block; }
+
+.video-card__corner {
+  position: absolute;
+  width: 22px; height: 22px;
+  border: 0 solid var(--white);
+  z-index: 2;
+  opacity: .85;
+}
+.video-card__corner--tl { top: 16px; left: 16px; border-top-width: 2.5px; border-left-width: 2.5px; }
+.video-card__corner--tr { top: 16px; right: 16px; border-top-width: 2.5px; border-right-width: 2.5px; }
+.video-card__corner--bl { bottom: 16px; left: 16px; border-bottom-width: 2.5px; border-left-width: 2.5px; }
+.video-card__corner--br { bottom: 16px; right: 16px; border-bottom-width: 2.5px; border-right-width: 2.5px; }
+
+.video-card__play {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%,-50%);
+  width: 92px; height: 92px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: var(--btn-idle);
+  color: var(--btn-text);
+  box-shadow: 0 0 0 14px var(--glow), 0 24px 48px -16px rgba(0,0,0,.5);
+  transition: transform .35s var(--ease-snap), background .35s var(--ease-out), box-shadow .35s var(--ease-out);
+}
+.video-card__play svg { width: 30px; height: 30px; margin-left: 4px; }
+.video-card__playbtn:hover .video-card__play {
+  background: var(--btn-hover);
+  color: var(--btn-hover-text);
+  transform: translate(-50%,-50%) scale(1.08);
+  box-shadow: 0 0 0 18px var(--glow-strong), 0 28px 56px -18px rgba(0,0,0,.55);
+}
+
+.video-card__label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 26px 30px 30px;
+}
+.video-card__eyebrow {
+  font-family: var(--font-title);
+  font-size: 12.5px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--text-dimmer);
+}
+.video-card__title {
+  font-family: var(--font-title);
+  font-size: 20px;
+  color: var(--text-main);
+}
+
+@media (max-width: 900px) {
+  header.hero-section { min-height: auto; padding-top: 132px; padding-bottom: 48px; }
+  .hero__grid { flex-direction: column; text-align: center; }
+  .hero__content { flex-direction: column; max-width: 640px; }
+  .hero__text .eyebrow { justify-content: center; margin: 0 auto; }
+  .hero__text h1, .hero__text p { margin-left: auto; margin-right: auto; }
+  .video-card { max-width: 640px; }
+}
+
+/* -------------------------------------------------------------------- */
 /* Snap-frame — the site's signature reveal, used around screenshots     */
 /* -------------------------------------------------------------------- */
 .snapframe {
