@@ -3,14 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Download SnapRes — Free for Windows</title>
-<meta name="description" content="Download SnapRes: a free, portable, single-file Windows app for switching stretched competitive resolutions in one click.">
+<title>About SnapRes</title>
+<meta name="description" content="Why SnapRes exists, what it does, and how to reach bku — the developer behind it.">
 <link rel="icon" href="assets/icons/favicon.ico">
 <link rel="apple-touch-icon" href="assets/img/Logo_Main.png">
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body data-page="download">
+<body data-page="about">
 <div class="page-veil"></div>
 
 <!-- ============================= NAV ============================= -->
@@ -40,87 +40,89 @@
   </div>
 </nav>
 
-<!-- ============================= HERO / DOWNLOAD ============================= -->
-<header class="section" style="padding-top:168px; padding-bottom:60px;">
-  <div class="container" style="text-align:center; max-width:720px;">
-    <p class="eyebrow reveal" style="justify-content:center; margin:0 auto 22px;">
-      <span data-i18n="download_eyebrow">Latest Release</span> — <span data-cfg-text="VERSION_LABEL">v1.0.1</span>
-    </p>
-    <h1 class="reveal" style="font-size:clamp(36px,6vw,58px); line-height:1.04; transition-delay:.06s;" data-i18n="download_title">Get SnapRes</h1>
-    <p class="reveal" style="font-size:16.5px; max-width:480px; margin:22px auto 0; transition-delay:.12s;" data-i18n="download_sub">
-      A single portable .exe. No installer, no admin prompts to dig through, nothing left behind.
-    </p>
-
-    <div class="reveal" style="display:flex; gap:14px; justify-content:center; margin-top:40px; flex-wrap:wrap; transition-delay:.18s;">
-      <span class="btn__bracket-frame snap-target">
-        <span class="bracket bracket--tl"></span><span class="bracket bracket--tr"></span><span class="bracket bracket--bl"></span><span class="bracket bracket--br"></span>
-        <!--
-          ⚠️ THIS is the big download button. Its link comes from
-          DOWNLOAD_URL in assets/js/config.js — edit that one value
-          (e.g. once you have your own domain) and this button updates
-          automatically. The href below is just a no-JS fallback.
-        -->
-        <a class="btn btn--primary btn--lg" data-cfg="DOWNLOAD_URL" href="https://github.com/bkuwu/SnapRes/releases/tag/v1.0.1" id="main-download-btn">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13M6 11l6 6 6-6M5 21h14"/></svg>
-          <span data-i18n="download_button">Download for Windows</span>
-        </a>
-      </span>
-      <a class="btn btn--ghost btn--lg" data-cfg="GITHUB_REPO_URL" href="https://github.com/bkuwu/SnapRes" target="_blank" rel="noopener" data-i18n="download_github_btn">View source on GitHub</a>
-    </div>
-    <p class="reveal" style="font-size:12.5px; color:var(--text-dimmer); margin-top:18px; transition-delay:.22s;" data-i18n="download_note">Windows 10 / 11 · Portable · ~1 file</p>
+<!-- ============================= HEADER ============================= -->
+<header class="section" style="padding-top:168px; padding-bottom:40px;">
+  <div class="container" style="max-width:760px;">
+    <p class="eyebrow reveal" data-i18n="about_eyebrow">The App</p>
+    <h1 class="reveal" style="font-size:clamp(38px,6vw,64px); margin-top:16px;" data-i18n="about_title">About SnapRes</h1>
   </div>
 </header>
 
-<!-- ===================== WHAT YOU GET ===================== -->
-<section class="section section--tight">
-  <div class="container">
-    <p class="eyebrow reveal" style="justify-content:center; margin:0 auto 40px;" data-i18n="req_title">What you're getting</p>
-    <div class="stagger grid-2x2">
-      <div class="reveal" style="--i:0; background:var(--panel); padding:26px;">
-        <p style="font-size:14px; color:var(--text-main);" data-i18n="req1">Single portable .exe — run it from anywhere</p>
-      </div>
-      <div class="reveal" style="--i:1; background:var(--panel); padding:26px;">
-        <p style="font-size:14px; color:var(--text-main);" data-i18n="req2">Instant switching between saved presets</p>
-      </div>
-      <div class="reveal" style="--i:2; background:var(--panel); padding:26px;">
-        <p style="font-size:14px; color:var(--text-main);" data-i18n="req3">Built-in setup guide for driver-level custom resolutions</p>
-      </div>
-      <div class="reveal" style="--i:3; background:var(--panel); padding:26px;">
-        <p style="font-size:14px; color:var(--text-main);" data-i18n="req4">Light and dark themes, matched to your desktop</p>
+<!-- ===================== ABOUT SECTIONS ===================== -->
+<section class="section" style="padding-top:20px;">
+  <div class="container" style="max-width:760px;">
+
+    <div class="reveal" style="padding:44px 0; border-top:1px solid var(--border);">
+      <h2 style="font-size:22px; margin-bottom:14px;">What It Is</h2>
+      <p style="font-size:16px; max-width:600px;">SnapRes is a one-click resolution switcher for stretched res in Valorant. You pick a resolution, it applies instantly, done.</p>
+    </div>
+
+    <div class="reveal" style="padding:44px 0; border-top:1px solid var(--border);">
+      <h2 style="font-size:22px; margin-bottom:14px;">Why I Made It</h2>
+      <p style="font-size:16px; max-width:600px;">Honestly I just got sick of doing this manually every match. Alt-tab out, dig through Windows display settings, type in the same numbers I always use, wait for it to apply, alt-tab back in — and then undo the whole thing after the match. Multiply that by every game you play in a session and it's just annoying for no reason. So I built this to skip all of that.</p>
+    </div>
+
+    <div class="reveal" style="padding:44px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
+      <h2 style="font-size:22px; margin-bottom:14px;">Why It's Worth Using</h2>
+      <p style="font-size:16px; max-width:600px;">It's genuinely just one click now instead of a whole process. No ads, no account, no background junk running when you're not using it — it does the one thing it's supposed to do and gets out of your way. If stretched res is part of your setup, this just saves you the hassle every single game.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ===================== SIGNATURE VISUAL ===================== -->
+<section class="section--tight">
+  <div class="container" style="display:flex; justify-content:center;">
+    <div class="reveal snapframe">
+      <span class="sf-corner sf-corner--tr"></span><span class="sf-corner sf-corner--bl"></span>
+      <div style="width:180px; height:180px; border-radius:50%; background:var(--panel); border:1px solid var(--border); display:grid; place-items:center;">
+        <img data-logo data-src-dark="assets/img/Logo_Dark.png" data-src-light="assets/img/Logo_Main.png" src="assets/img/Logo_Dark.png" alt="SnapRes logo mark" width="86" height="86">
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== SETUP ===================== -->
-<section class="section" id="setup">
+<!-- ===================== CREDITS ===================== -->
+<section class="section" id="credits">
   <div class="container" style="max-width:760px;">
     <hr class="rule" style="margin-bottom:70px;">
-    <p class="eyebrow reveal" data-i18n="setup_eyebrow">Before You Switch</p>
-    <h2 class="reveal" style="font-size:clamp(26px,3.4vw,38px); margin:14px 0 12px;" data-i18n="setup_title">Quick setup</h2>
-    <p class="reveal" style="font-size:15px; max-width:480px; margin-bottom:48px;" data-i18n="setup_sub">A few one-time steps so stretched res actually applies correctly in-game.</p>
+    <p class="eyebrow reveal" data-i18n="credits_eyebrow">Behind It</p>
+    <h2 class="reveal" style="font-size:clamp(26px,3.6vw,40px); margin:14px 0 16px;" data-i18n="credits_title">Credits</h2>
+    <p class="reveal" style="font-size:15.5px; max-width:520px; margin-bottom:32px;" data-i18n="credits_body">
+      SnapRes is built and maintained by bku. Questions, suggestions, or just want to see what's next — the links below are the best way to reach out.
+    </p>
 
-    <div class="stagger">
-      <div class="reveal" style="--i:0; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);">
-        <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">01</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup1_t">Disable extra monitors</h3><p style="font-size:13.5px;" data-i18n="setup1_b">Running more than one display? Disable every monitor except your main one in Device Manager.</p></div>
-      </div>
-      <div class="reveal" style="--i:1; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);">
-        <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">02</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup2_t">Register each resolution</h3><p style="font-size:13.5px;" data-i18n="setup2_b">Windows can only switch to a resolution your GPU driver already knows — add each stretched size as a custom resolution in your graphics control panel first.</p></div>
-      </div>
-      <div class="reveal" style="--i:2; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);">
-        <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">03</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup3_t">Set GPU scaling to Full Screen</h3><p style="font-size:13.5px;" data-i18n="setup3_b">In the same control panel, set scaling to Full Screen so the stretch fills the whole display.</p></div>
-      </div>
-      <div class="reveal" style="--i:3; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);">
-        <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">04</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup4_t">Windowed Fullscreen + Fill in-game</h3><p style="font-size:13.5px;" data-i18n="setup4_b">In your game's video settings, use Windowed Fullscreen with the Fill aspect ratio method.</p></div>
-      </div>
-      <div class="reveal" style="--i:4; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
-        <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">05</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup5_t">Switch once you're in the match</h3><p style="font-size:13.5px;" data-i18n="setup5_b">Apply the resolution after you're fully loaded in — not at the menu or agent select.</p></div>
-      </div>
+    <div class="reveal" style="display:flex; gap:14px; flex-wrap:wrap; margin-bottom:60px;">
+      <a class="btn btn--ghost" data-cfg="YOUTUBE_URL" href="https://www.youtube.com/@bkuuuuu" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="5" width="20" height="14" rx="4"/><path d="M10 9l6 3-6 3V9z" fill="var(--panel)"/></svg>
+        <span data-i18n="footer_youtube">YouTube</span>
+      </a>
+      <a class="btn btn--ghost" data-cfg="GITHUB_REPO_URL" href="https://github.com/bkuwu/SnapRes" target="_blank" rel="noopener">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.39 7.86 10.91.57.1.79-.25.79-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
+        <span data-i18n="footer_github">GitHub</span>
+      </a>
+      <a class="btn btn--ghost" data-cfg="CONTACT_EMAIL" data-cfg-text="CONTACT_EMAIL" href="mailto:hakobennadja66@gmail.com">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg>
+        hakobennadja66@gmail.com
+      </a>
+    </div>
+
+    <div class="reveal" style="background:var(--panel); border:1px solid var(--border); border-radius:var(--radius-lg); padding:34px;">
+      <h3 style="font-size:16px; margin-bottom:12px;" data-i18n="support_title">Support the project</h3>
+      <p style="font-size:14.5px; max-width:520px;" data-i18n="support_body">SnapRes is free and always will be. If it saved you some time and you feel like tossing a couple bucks my way, it's never expected, always appreciated.</p>
+    </div>
+
+    <div class="reveal" style="background:var(--panel); border:1px solid var(--border); border-radius:var(--radius-lg); padding:34px; margin-top:20px;">
+      <h3 style="font-size:16px; margin-bottom:12px;" data-i18n="contact_title">Send a message</h3>
+      <p style="font-size:14.5px; max-width:520px; margin-bottom:22px;" data-i18n="contact_body">Bug report, feature idea, or just want to say hi — fill this in and it'll open your email client with everything ready to send.</p>
+      <form class="contact-form" data-contact-form>
+        <div class="contact-form__row">
+          <input type="text" data-cf-name placeholder="Your name" autocomplete="name" required>
+          <input type="email" data-cf-email placeholder="Your email" autocomplete="email" required>
+        </div>
+        <textarea data-cf-message rows="4" placeholder="What's up?" required></textarea>
+        <button type="submit" class="btn btn--primary" data-i18n="contact_send">Send message</button>
+      </form>
     </div>
   </div>
 </section>
