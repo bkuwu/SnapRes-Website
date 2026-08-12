@@ -12,7 +12,7 @@
 window.SNAPRES_CONFIG = {
   // Big "Download" buttons point here. Currently your GitHub release page —
   // swap this for a direct link (or your own domain) whenever you have one.
-  DOWNLOAD_URL: "https://github.com/bkuwu/SnapRes/releases/tag/v1.0.5",
+  DOWNLOAD_URL: "https://github.com/bkuwu/SnapRes/releases/download/v1.0.5/SnapRes.exe",
 
   // "View on GitHub" buttons / the GitHub icon in the nav + footer.
   GITHUB_REPO_URL: "https://github.com/bkuwu/SnapRes",
@@ -24,5 +24,5 @@ window.SNAPRES_CONFIG = {
   CONTACT_EMAIL: "hakobennadja66@gmail.com",
 
   // Shown next to "Download" as the current build tag.
-  VERSION_LABEL: "v1.0.1",
+  VERSION_LABEL: "v1.0.5",
 };
