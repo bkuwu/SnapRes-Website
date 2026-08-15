@@ -27,5 +27,5 @@ window.SNAPRES_CONFIG = {
   CONTACT_EMAIL: "hakobennadja66@gmail.com",
 
   // Shown next to "Download" as the current build tag.
-  VERSION_LABEL: "v1.0.1",
+  VERSION_LABEL: "v1.0.6",
 };
