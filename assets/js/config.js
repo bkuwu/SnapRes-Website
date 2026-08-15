@@ -12,7 +12,7 @@
 window.SNAPRES_CONFIG = {
   // Big "Download" buttons point here. Currently your GitHub release page —
   // swap this for a direct link (or your own domain) whenever you have one.
-  DOWNLOAD_URL: "https://github.com/bkuwu/SnapRes/releases/download/v1.0.5/SnapRes.exe",
+  DOWNLOAD_URL: "https://github.com/bkuwu/SnapRes/releases/tag/v1.0.1",
 
   // "View on GitHub" buttons / the GitHub icon in the nav + footer.
   GITHUB_REPO_URL: "https://github.com/bkuwu/SnapRes",
@@ -20,9 +20,12 @@ window.SNAPRES_CONFIG = {
   // YouTube channel link, used in the nav-less footer + About/Credits.
   YOUTUBE_URL: "https://www.youtube.com/@bkuuuuu",
 
+  // Discord server invite, used in the footer + About/Credits.
+  DISCORD_URL: "https://discord.gg/MzX9wJ6Tyf",
+
   // Shown + mailto:'d on the About / Credits section.
   CONTACT_EMAIL: "hakobennadja66@gmail.com",
 
   // Shown next to "Download" as the current build tag.
-  VERSION_LABEL: "v1.0.5",
+  VERSION_LABEL: "v1.0.1",
 };
