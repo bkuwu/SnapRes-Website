@@ -24,7 +24,7 @@ window.SNAPRES_CONFIG = {
   DISCORD_URL: "https://discord.gg/MzX9wJ6Tyf",
 
   // Shown + mailto:'d on the About / Credits section.
-  CONTACT_EMAIL: "hakobennadja66@gmail.com",
+  CONTACT_EMAIL: "saywhatevl@gmail.com",
 
   // Shown next to "Download" as the current build tag.
   VERSION_LABEL: "v1.0.6",
