@@ -1,5 +1,5 @@
 window.SNAPRES_CONFIG = {
-  DOWNLOAD_URL: "https://github.com/bkuwu/SnapRes/releases/tag/v2.0.0/SnapRes.Setup.2.0.0.exe",
+  DOWNLOAD_URL: "https://github.com/bkuwu/SnapRes/releases/download/v2.0.0/SnapRes.Setup.2.0.0.exe",
   GITHUB_REPO_URL: "https://github.com/bkuwu/SnapRes",
   YOUTUBE_URL: "https://www.youtube.com/@bkuuuuu",
   DISCORD_URL: "https://discord.gg/MzX9wJ6Tyf",
