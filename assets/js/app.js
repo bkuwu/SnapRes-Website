@@ -1,16 +1,9 @@
-/* =========================================================================
-   SnapRes — shared site behavior
-   ========================================================================= */
 (function () {
   "use strict";
 
   var CFG = window.SNAPRES_CONFIG || {};
   var root = document.documentElement;
 
-  /* ---------------------------------------------------------------------
-     Config-driven links — every href tagged data-cfg gets its value from
-     assets/js/config.js. Edit that ONE file to change links site-wide.
-     --------------------------------------------------------------------- */
   function applyConfig() {
     document.querySelectorAll("[data-cfg]").forEach(function (el) {
       var key = el.getAttribute("data-cfg");
@@ -27,14 +20,8 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Theme — mirrors THEMES["dark"/"light"] from SnapRes.py
-     --------------------------------------------------------------------- */
   function syncLogos() {
     var theme = root.getAttribute("data-theme");
-    // Logo_Dark.png is the light-stroke mark made for dark backgrounds;
-    // Logo_Main.png is the dark-stroke mark made for light backgrounds —
-    // swap so the wordmark stays legible in both themes.
     document.querySelectorAll("[data-logo], [data-shot]").forEach(function (img) {
       img.src = theme === "dark" ? img.getAttribute("data-src-dark") : img.getAttribute("data-src-light");
     });
@@ -56,9 +43,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     i18n
-     --------------------------------------------------------------------- */
   function initLang() {
     var LANGS = window.SNAPRES_LANGS || [];
     var DICT = window.SNAPRES_I18N || {};
@@ -83,7 +67,6 @@
       });
     }
 
-    // build menu(s)
     document.querySelectorAll("[data-lang-menu]").forEach(function (menu) {
       LANGS.forEach(function (l) {
         var btn = document.createElement("button");
@@ -116,9 +99,6 @@
     apply(lang);
   }
 
-  /* ---------------------------------------------------------------------
-     Nav: scroll shadow + mobile menu + active link
-     --------------------------------------------------------------------- */
   function initNav() {
     var nav = document.querySelector(".nav");
     if (!nav) return;
@@ -145,9 +125,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Scroll reveals + snap-frames
-     --------------------------------------------------------------------- */
   function initReveals() {
     var targets = document.querySelectorAll(".reveal, .snapframe");
     if (!("IntersectionObserver" in window) || !targets.length) {
@@ -158,9 +135,6 @@
       entries.forEach(function (entry) {
         var el = entry.target;
         var show = entry.isIntersecting;
-        // an element can carry BOTH classes (e.g. a screenshot frame that's
-        // also a fade target) — toggle each independently, and toggle both
-        // ways so things fade back out on scroll-away, not just in once.
         if (el.classList.contains("reveal")) el.classList.toggle("is-in", show);
         if (el.classList.contains("snapframe")) el.classList.toggle("is-snapped", show);
       });
@@ -168,11 +142,6 @@
     targets.forEach(function (t) { io.observe(t); });
   }
 
-  /* ---------------------------------------------------------------------
-     Page transition veil — fades out before internal navigation so page
-     changes feel like one continuous, "smooth" experience rather than a
-     hard reload.
-     --------------------------------------------------------------------- */
   function initTransitions() {
     var veil = document.querySelector(".page-veil");
     document.body.classList.add("is-loaded");
@@ -189,10 +158,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Contact form — no backend on this site, so this opens the visitor's
-     email client with the message pre-filled, addressed to CONTACT_EMAIL.
-     --------------------------------------------------------------------- */
   function initContactForm() {
     var form = document.querySelector("[data-contact-form]");
     if (!form) return;
@@ -202,17 +167,12 @@
       var email = (form.querySelector("[data-cf-email]") || {}).value || "";
       var msg = (form.querySelector("[data-cf-message]") || {}).value || "";
       var to = CFG.CONTACT_EMAIL || "";
-      var subject = "SnapRes — message from " + (name.trim() || "the website");
-      var body = msg.trim() + "\n\n— " + name.trim() + (email.trim() ? " (" + email.trim() + ")" : "");
+      var subject = "SnapRes: message from " + (name.trim() || "the website");
+      var body = msg.trim() + "\n\nFrom " + name.trim() + (email.trim() ? " (" + email.trim() + ")" : "");
       window.location.href = "mailto:" + to + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Hero video card — thumbnail facade that swaps itself for a real
-     YouTube embed (autoplaying) on click, so nothing loads from YouTube
-     until the visitor actually wants to watch.
-     --------------------------------------------------------------------- */
   function initVideoCard() {
     document.querySelectorAll("[data-youtube-card]").forEach(function (card) {
       var btn = card.querySelector(".video-card__playbtn");
@@ -231,9 +191,6 @@
     });
   }
 
-  /* ---------------------------------------------------------------------
-     Boot
-     --------------------------------------------------------------------- */
   document.addEventListener("DOMContentLoaded", function () {
     applyConfig();
     initTheme();

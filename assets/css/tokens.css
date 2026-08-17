@@ -1,9 +1,3 @@
-/* =========================================================================
-   SnapRes marketing site — design tokens
-   Palette lifted 1:1 from SnapRes.py (THEMES dict). Do not introduce new
-   hues — everything here is grayscale + pure white/black, on purpose.
-   ========================================================================= */
-
 @font-face {
   font-family: "Nunito Black";
   src: url("../fonts/Nunito-Black.ttf") format("truetype");
@@ -18,7 +12,7 @@
 }
 
 :root {
-  /* raw grayscale ramp — from SnapRes.py */
+  
   --gray-900: #0F0F0F;
   --gray-800: #1C1C1C;
   --gray-700: #3C3C3C;
@@ -31,18 +25,18 @@
   --white: #FFFFFF;
   --black: #000000;
 
-  /* type */
+  
   --font-title: "Nunito Black", "Segoe UI Semibold", sans-serif;
   --font-body: "Nunito Light", "Segoe UI", sans-serif;
 
-  /* motion */
+  
   --ease-snap: cubic-bezier(.16,.84,.32,1);
   --ease-out: cubic-bezier(.22,.61,.36,1);
   --dur-fast: .28s;
   --dur-med: .6s;
   --dur-slow: 1s;
 
-  /* shape */
+  
   --radius-sm: 10px;
   --radius-md: 16px;
   --radius-lg: 24px;
@@ -50,7 +44,6 @@
   color-scheme: dark;
 }
 
-/* ---- dark theme (default) — mirrors THEMES["dark"] ---- */
 :root,
 [data-theme="dark"] {
   --bg: var(--gray-900);
@@ -70,7 +63,6 @@
   --scrim: rgba(15,15,15,.72);
 }
 
-/* ---- light theme — mirrors THEMES["light"] ---- */
 [data-theme="light"] {
   color-scheme: light;
   --bg: var(--gray-100);
