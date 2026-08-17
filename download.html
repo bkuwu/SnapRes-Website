@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Download SnapRes — Free for Windows</title>
-<meta name="description" content="Download SnapRes: a free, portable, single-file Windows app for switching stretched competitive resolutions in one click.">
+<title>Download SnapRes: Free for Windows</title>
+<meta name="description" content="Download SnapRes: a free Windows installer for switching stretched competitive resolutions in one click.">
 <link rel="icon" href="assets/icons/favicon.ico">
 <link rel="apple-touch-icon" href="assets/img/Logo_Main.png">
 <link rel="stylesheet" href="assets/css/tokens.css">
@@ -13,7 +13,6 @@
 <body data-page="download">
 <div class="page-veil"></div>
 
-<!-- ============================= NAV ============================= -->
 <nav class="nav">
   <a class="nav__brand" href="index.html">
     <span class="nav__mark"><img data-logo data-src-dark="assets/img/Logo_Dark.png" data-src-light="assets/img/Logo_Main.png" src="assets/img/Logo_Dark.png" alt="" width="26" height="26"></span>
@@ -28,8 +27,8 @@
 
   <div class="nav__tools">
     <button class="icon-btn" data-theme-toggle aria-label="Toggle theme">
-      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 1 1 9.5 4a7 7 0 0 0 10.5 10.5z"/></svg>
-      <svg class="icon-sun" viewBox="0 0 24 24" fill="currentColor" style="display:none"><circle cx="12" cy="12" r="5"/></svg>
+      <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8Z"/></svg>
     </button>
     <a class="icon-btn" data-cfg="GITHUB_REPO_URL" href="https://github.com/bkuwu/SnapRes" target="_blank" rel="noopener" aria-label="GitHub">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 .5C5.65.5.5 5.65.5 12c0 5.09 3.29 9.39 7.86 10.91.57.1.79-.25.79-.55 0-.27-.01-1.16-.02-2.11-3.2.7-3.88-1.36-3.88-1.36-.53-1.34-1.28-1.7-1.28-1.7-1.05-.72.08-.71.08-.71 1.16.08 1.77 1.19 1.77 1.19 1.03 1.77 2.7 1.26 3.36.96.1-.75.4-1.26.73-1.55-2.55-.29-5.23-1.28-5.23-5.68 0-1.25.45-2.28 1.19-3.08-.12-.29-.52-1.46.11-3.05 0 0 .97-.31 3.18 1.18a11.1 11.1 0 0 1 5.79 0c2.2-1.49 3.17-1.18 3.17-1.18.64 1.59.24 2.76.12 3.05.74.8 1.19 1.83 1.19 3.08 0 4.41-2.69 5.38-5.25 5.67.41.36.78 1.06.78 2.15 0 1.55-.01 2.8-.01 3.18 0 .31.21.66.79.55A11.5 11.5 0 0 0 23.5 12C23.5 5.65 18.35.5 12 .5z"/></svg>
@@ -40,50 +39,42 @@
   </div>
 </nav>
 
-<!-- ============================= HERO / DOWNLOAD ============================= -->
 <header class="section" style="padding-top:168px; padding-bottom:60px;">
   <div class="container" style="text-align:center; max-width:720px;">
     <p class="eyebrow reveal" style="justify-content:center; margin:0 auto 22px;">
-      <span data-i18n="download_eyebrow">Latest Release</span> — <span data-cfg-text="VERSION_LABEL">v1.0.6</span>
+      <span data-i18n="download_eyebrow">Latest Release</span> · <span data-cfg-text="VERSION_LABEL">v2.0.0</span>
     </p>
     <h1 class="reveal" style="font-size:clamp(36px,6vw,58px); line-height:1.04; transition-delay:.06s;" data-i18n="download_title">Get SnapRes</h1>
     <p class="reveal" style="font-size:16.5px; max-width:480px; margin:22px auto 0; transition-delay:.12s;" data-i18n="download_sub">
-      A single portable .exe. No installer, no admin prompts to dig through, nothing left behind.
+      A simple Windows installer. Set it up once, then every stretched resolution is one click away.
     </p>
 
     <div class="reveal" style="display:flex; gap:14px; justify-content:center; margin-top:40px; flex-wrap:wrap; transition-delay:.18s;">
       <span class="btn__bracket-frame snap-target">
         <span class="bracket bracket--tl"></span><span class="bracket bracket--tr"></span><span class="bracket bracket--bl"></span><span class="bracket bracket--br"></span>
-        <!--
-          ⚠️ THIS is the big download button. Its link comes from
-          DOWNLOAD_URL in assets/js/config.js — edit that one value
-          (e.g. once you have your own domain) and this button updates
-          automatically. The href below is just a no-JS fallback.
-        -->
-        <a class="btn btn--primary btn--lg" data-cfg="DOWNLOAD_URL" href="https://github.com/bkuwu/SnapRes/releases/tag/v1.0.1" id="main-download-btn">
+        <a class="btn btn--primary btn--lg" data-cfg="DOWNLOAD_URL" href="https://github.com/bkuwu/SnapRes/releases/tag/v2.0.0/SnapRes.Setup.2.0.0.exe" id="main-download-btn">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13M6 11l6 6 6-6M5 21h14"/></svg>
           <span data-i18n="download_button">Download for Windows</span>
         </a>
       </span>
       <a class="btn btn--ghost btn--lg" data-cfg="GITHUB_REPO_URL" href="https://github.com/bkuwu/SnapRes" target="_blank" rel="noopener" data-i18n="download_github_btn">View source on GitHub</a>
     </div>
-    <p class="reveal" style="font-size:12.5px; color:var(--text-dimmer); margin-top:18px; transition-delay:.22s;" data-i18n="download_note">Windows 10 / 11 · Portable · ~1 file</p>
+    <p class="reveal" style="font-size:12.5px; color:var(--text-dimmer); margin-top:18px; transition-delay:.22s;" data-i18n="download_note">Windows 10 / 11 · Free installer</p>
   </div>
 </header>
 
-<!-- ===================== WHAT YOU GET ===================== -->
 <section class="section section--tight">
   <div class="container">
     <p class="eyebrow reveal" style="justify-content:center; margin:0 auto 40px;" data-i18n="req_title">What you're getting</p>
     <div class="stagger grid-2x2">
       <div class="reveal" style="--i:0; background:var(--panel); padding:26px;">
-        <p style="font-size:14px; color:var(--text-main);" data-i18n="req1">Single portable .exe — run it from anywhere</p>
+        <p style="font-size:14px; color:var(--text-main);" data-i18n="req1">One simple installer, up and running in a couple minutes</p>
       </div>
       <div class="reveal" style="--i:1; background:var(--panel); padding:26px;">
-        <p style="font-size:14px; color:var(--text-main);" data-i18n="req2">Instant switching between saved presets</p>
+        <p style="font-size:14px; color:var(--text-main);" data-i18n="req2">Instant switching between saved presets and custom resolutions</p>
       </div>
       <div class="reveal" style="--i:2; background:var(--panel); padding:26px;">
-        <p style="font-size:14px; color:var(--text-main);" data-i18n="req3">Built-in setup guide for driver-level custom resolutions</p>
+        <p style="font-size:14px; color:var(--text-main);" data-i18n="req3">One-click monitor driver toggle, so stretched res actually renders stretched</p>
       </div>
       <div class="reveal" style="--i:3; background:var(--panel); padding:26px;">
         <p style="font-size:14px; color:var(--text-main);" data-i18n="req4">Light and dark themes, matched to your desktop</p>
@@ -92,7 +83,6 @@
   </div>
 </section>
 
-<!-- ===================== SETUP ===================== -->
 <section class="section" id="setup">
   <div class="container" style="max-width:760px;">
     <hr class="rule" style="margin-bottom:70px;">
@@ -103,29 +93,28 @@
     <div class="stagger">
       <div class="reveal" style="--i:0; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);">
         <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">01</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup1_t">Disable extra monitors</h3><p style="font-size:13.5px;" data-i18n="setup1_b">Running more than one display? Disable every monitor except your main one in Device Manager.</p></div>
+        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup1_t">Add every resolution as a custom resolution</h3><p style="font-size:13.5px;" data-i18n="setup1_b">Windows can only switch to a resolution your GPU driver already knows. Add each stretched resolution manually in NVIDIA Control Panel, AMD Software, or Intel Graphics Software so SnapRes can switch to it instantly.</p></div>
       </div>
       <div class="reveal" style="--i:1; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);">
         <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">02</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup2_t">Register each resolution</h3><p style="font-size:13.5px;" data-i18n="setup2_b">Windows can only switch to a resolution your GPU driver already knows — add each stretched size as a custom resolution in your graphics control panel first.</p></div>
+        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup2_t">Set your GPU scaling to Full Screen</h3><p style="font-size:13.5px;" data-i18n="setup2_b">In that same control panel, set the scaling option to Full Screen instead of Aspect Ratio or Centered, so the stretched resolution fills the whole monitor.</p></div>
       </div>
       <div class="reveal" style="--i:2; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);">
         <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">03</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup3_t">Set GPU scaling to Full Screen</h3><p style="font-size:13.5px;" data-i18n="setup3_b">In the same control panel, set scaling to Full Screen so the stretch fills the whole display.</p></div>
+        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup3_t">Turn off the monitor driver</h3><p style="font-size:13.5px;" data-i18n="setup3_b">Use the driver card above the resolution buttons in the app. Click Turn off, approve the single Windows permission prompt, and you're done.</p></div>
       </div>
       <div class="reveal" style="--i:3; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border);">
         <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">04</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup4_t">Windowed Fullscreen + Fill in-game</h3><p style="font-size:13.5px;" data-i18n="setup4_b">In your game's video settings, use Windowed Fullscreen with the Fill aspect ratio method.</p></div>
+        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup4_t">Set your game to windowed fullscreen and Fill</h3><p style="font-size:13.5px;" data-i18n="setup4_b">In your game's video settings, set Display Mode to Windowed Fullscreen and Aspect Ratio to Fill.</p></div>
       </div>
       <div class="reveal" style="--i:4; display:flex; gap:20px; padding:22px 0; border-top:1px solid var(--border); border-bottom:1px solid var(--border);">
         <span style="font-family:var(--font-title); color:var(--text-dimmer); font-size:13px; padding-top:2px;">05</span>
-        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup5_t">Switch once you're in the match</h3><p style="font-size:13.5px;" data-i18n="setup5_b">Apply the resolution after you're fully loaded in — not at the menu or agent select.</p></div>
+        <div><h3 style="font-size:15.5px; margin-bottom:6px;" data-i18n="setup5_t">Only switch once you're in a match</h3><p style="font-size:13.5px;" data-i18n="setup5_b">Stretched resolutions apply cleanest once you're fully loaded in. Do it there, not at the menu or agent select.</p></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============================= FOOTER ============================= -->
 <footer class="footer">
   <div class="container">
     <hr class="rule">
@@ -170,12 +159,6 @@
   </div>
 </footer>
 
-<script>document.querySelector('.icon-sun') && (function(){
-  var m=document.querySelector('.icon-moon'), s=document.querySelector('.icon-sun');
-  var upd=function(){var t=document.documentElement.getAttribute('data-theme'); if(m&&s){m.style.display=t==='dark'?'none':'block'; s.style.display=t==='dark'?'block':'none';}};
-  new MutationObserver(upd).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
-  document.addEventListener('DOMContentLoaded',upd); upd();
-})();</script>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
