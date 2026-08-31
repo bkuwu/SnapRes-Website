@@ -37,7 +37,8 @@
           }
         });
       });
-      if (total <= 0) return; // nothing to show yet
+      if (total <= 0 && !CFG.DOWNLOAD_COUNT_OFFSET) return; // nothing to show yet
+      total += CFG.DOWNLOAD_COUNT_OFFSET || 0;
       el.style.display = "block";
       animateCount(total);
     })
