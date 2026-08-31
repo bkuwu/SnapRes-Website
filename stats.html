@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SnapRes Stats</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/icons/favicon.ico">
+<link rel="stylesheet" href="assets/css/tokens.css">
+<link rel="stylesheet" href="assets/css/main.css">
+<style>
+  .stats-wrap{ max-width:880px; margin:0 auto; padding:120px 24px 80px; }
+  h1, .gate h2{ font-family:var(--font-title); }
+  .stats-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(190px,1fr)); gap:1px; background:var(--border); border:1px solid var(--border); border-radius:var(--radius-lg); overflow:hidden; margin-top:32px; }
+  .stat-card{ background:var(--panel); padding:26px 22px; }
+  .stat-card .num{ font-family:var(--font-title); font-size:32px; line-height:1; color:var(--text-main); }
+  .stat-card .label{ font-size:12.5px; color:var(--text-dimmer); margin-top:8px; }
+  .stat-card.live .num{ color:var(--status-ok); }
+  .gate{ max-width:360px; margin:160px auto; text-align:center; }
+  .gate input{ width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--border); background:var(--panel); color:var(--text-main); margin:16px 0; font-size:14px; }
+  .refresh-note{ margin-top:24px; font-size:12.5px; color:var(--text-dimmer); }
+  .err{ color:#ff6b6b; margin-top:12px; font-size:13px; }
+</style>
+</head>
+<body data-theme="dark">
+
+<div id="gate" class="gate">
+  <h2>SnapRes Stats</h2>
+  <p style="color:var(--text-dimmer); font-size:13.5px; margin-top:8px;">Enter your admin token to view.</p>
+  <input type="password" id="tokenInput" placeholder="Admin token" autocomplete="off">
+  <button class="btn btn--primary" id="unlockBtn" style="width:100%;">Unlock</button>
+  <div class="err" id="gateErr"></div>
+</div>
+
+<div class="stats-wrap" id="dashboard" style="display:none;">
+  <h1 style="font-size:28px;">SnapRes Stats</h1>
+  <div class="stats-grid" id="statsGrid"></div>
+  <p class="refresh-note" id="refreshNote">Loading…</p>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script>
+(function () {
+  "use strict";
+  var CFG = window.SNAPRES_CONFIG || {};
+  var ENDPOINT = CFG.STATS_API || "";
+  var gate = document.getElementById("gate");
+  var dashboard = document.getElementById("dashboard");
+  var grid = document.getElementById("statsGrid");
+  var note = document.getElementById("refreshNote");
+  var errBox = document.getElementById("gateErr");
+  var pollTimer = null;
+
+  function fieldsFrom(data) {
+    return [
+      { label: "Live right now", value: data.live_now, live: true },
+      { label: "Pageviews today", value: data.pageviews_today },
+      { label: "Unique visitors today", value: data.unique_visitors_today },
+      { label: "Pageviews (all-time)", value: data.pageviews_total },
+      { label: "Unique visitors (all-time)", value: data.unique_visitors_total },
+      { label: "Downloads (all-time)", value: data.downloads_total },
+      { label: "Unique downloaders", value: data.downloads_unique },
+    ];
+  }
+
+  function render(data) {
+    grid.innerHTML = fieldsFrom(data).map(function (f) {
+      return '<div class="stat-card' + (f.live ? ' live' : '') + '"><div class="num">' + f.value + '</div><div class="label">' + f.label + '</div></div>';
+    }).join("");
+    note.textContent = "Updated " + new Date(data.generated_at).toLocaleTimeString() + " · refreshes every 20s";
+  }
+
+  function fetchStats(token) {
+    fetch(ENDPOINT + "/api/stats?token=" + encodeURIComponent(token))
+      .then(function (r) {
+        if (r.status === 401) throw new Error("unauthorized");
+        return r.json();
+      })
+      .then(function (data) {
+        gate.style.display = "none";
+        dashboard.style.display = "block";
+        sessionStorage.setItem("snapres-stats-token", token);
+        render(data);
+        clearTimeout(pollTimer);
+        pollTimer = setTimeout(function () { fetchStats(token); }, 20000);
+      })
+      .catch(function () {
+        errBox.textContent = "Wrong token, or the stats API isn't reachable.";
+        sessionStorage.removeItem("snapres-stats-token");
+      });
+  }
+
+  document.getElementById("unlockBtn").addEventListener("click", function () {
+    var token = document.getElementById("tokenInput").value.trim();
+    if (!token) return;
+    errBox.textContent = "";
+    fetchStats(token);
+  });
+  document.getElementById("tokenInput").addEventListener("keydown", function (e) {
+    if (e.key === "Enter") document.getElementById("unlockBtn").click();
+  });
+
+  if (!ENDPOINT) {
+    errBox.textContent = "STATS_API isn't set in config.js yet.";
+  } else {
+    var saved = sessionStorage.getItem("snapres-stats-token");
+    if (saved) fetchStats(saved);
+  }
+})();
+</script>
+</body>
+</html>

@@ -9,6 +9,32 @@
 <link rel="apple-touch-icon" href="assets/img/Logo_Main.png">
 <link rel="stylesheet" href="assets/css/tokens.css">
 <link rel="stylesheet" href="assets/css/main.css">
+<style>
+.download-counter-badge{
+  display:inline-flex; align-items:center; gap:11px;
+  padding:12px 22px; margin-top:22px;
+  border:1px solid var(--border); border-radius:99px;
+  background:var(--panel);
+  box-shadow:0 0 0 8px var(--glow);
+}
+.download-counter-badge .dot{
+  width:8px; height:8px; border-radius:50%;
+  background:var(--status-ok);
+  box-shadow:0 0 0 4px color-mix(in srgb, var(--status-ok) 22%, transparent);
+  flex:0 0 auto;
+}
+.download-counter-badge .num{
+  font-family:var(--font-title);
+  font-size:22px;
+  line-height:1;
+  color:var(--text-main);
+}
+.download-counter-badge .label{
+  font-family:var(--font-body);
+  font-size:13.5px;
+  color:var(--text-dim);
+}
+</style>
 </head>
 <body data-page="download">
 <div class="page-veil"></div>
@@ -39,7 +65,7 @@
   </div>
 </nav>
 
-<header class="section" style="padding-top:168px; padding-bottom:60px;">
+<header class="section" style="padding-top:168px; padding-bottom:36px;">
   <div class="container" style="text-align:center; max-width:720px;">
     <p class="eyebrow reveal" style="justify-content:center; margin:0 auto 22px;">
       <span data-i18n="download_eyebrow">Latest Release</span> · <span data-cfg-text="VERSION_LABEL">v2.0.0</span>
@@ -52,7 +78,7 @@
     <div class="reveal" style="display:flex; gap:14px; justify-content:center; margin-top:40px; flex-wrap:wrap; transition-delay:.18s;">
       <span class="btn__bracket-frame snap-target">
         <span class="bracket bracket--tl"></span><span class="bracket bracket--tr"></span><span class="bracket bracket--bl"></span><span class="bracket bracket--br"></span>
-        <a class="btn btn--primary btn--lg" data-cfg="DOWNLOAD_URL" href="https://github.com/bkuwu/SnapRes/releases/download/v2.0.0/SnapRes.Setup.2.0.0.exe" id="main-download-btn">
+        <a class="btn btn--primary btn--lg" data-cfg="DOWNLOAD_URL" href="https://github.com/bkuwu/SnapRes/releases/download/v2.0.0/SnapRes.Setup.2.0.0.exe" id="main-download-btn" onclick="window.SnapResTrackDownload &amp;&amp; window.SnapResTrackDownload();"
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v13M6 11l6 6 6-6M5 21h14"/></svg>
           <span data-i18n="download_button">Download for Windows</span>
         </a>
@@ -60,10 +86,17 @@
       <a class="btn btn--ghost btn--lg" data-cfg="GITHUB_REPO_URL" href="https://github.com/bkuwu/SnapRes" target="_blank" rel="noopener" data-i18n="download_github_btn">View source on GitHub</a>
     </div>
     <p class="reveal" style="font-size:12.5px; color:var(--text-dimmer); margin-top:18px; transition-delay:.22s;" data-i18n="download_note">Windows 10 / 11 · Free installer</p>
+    <div class="reveal" id="downloadCounter" style="display:none; transition-delay:.26s; text-align:center;">
+      <div class="download-counter-badge">
+        <span class="dot"></span>
+        <span class="num" id="downloadCountNum">0</span>
+        <span class="label" data-i18n="download_count_label">people have downloaded SnapRes so far</span>
+      </div>
+    </div>
   </div>
 </header>
 
-<section class="section section--tight">
+<section class="section section--tight" style="padding-top:48px;">
   <div class="container">
     <p class="eyebrow reveal" style="justify-content:center; margin:0 auto 40px;" data-i18n="req_title">What you're getting</p>
     <div class="stagger grid-2x2">
@@ -160,6 +193,8 @@
 </footer>
 
 <script src="assets/js/config.js"></script>
+<script src="assets/js/analytics.js"></script>
+<script src="assets/js/download-counter.js"></script>
 <script src="assets/js/i18n.js"></script>
 <script src="assets/js/app.js"></script>
 </body>
