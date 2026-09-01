@@ -181,14 +181,90 @@
       btn.addEventListener("click", function () {
         var iframe = document.createElement("iframe");
         iframe.src = "https://www.youtube.com/embed/" + id + "?autoplay=1&rel=0";
-        iframe.title = "SnapRes showcase video";
+        iframe.title = "SnapRes video";
         iframe.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
         iframe.allowFullscreen = true;
         iframe.frameBorder = "0";
         iframe.style.cssText = "position:absolute;inset:0;width:100%;height:100%;";
         btn.replaceWith(iframe);
+        userInteracted = true;
       }, { once: true });
     });
+  }
+
+  var videoIndex = 0;
+  var videoSlideCount = 2;
+  var videoAutoplayMs = 7000;
+  var videoProgressTimer = null;
+
+  function initVideoCarousel() {
+    var thumbsTrack = document.getElementById("videoThumbsTrack");
+    var labelsTrack = document.getElementById("videoLabelsTrack");
+    var dots = document.querySelectorAll("#videoDots .video-carousel__dot");
+    var prevBtn = document.getElementById("videoPrev");
+    var nextBtn = document.getElementById("videoNext");
+    var progressBar = document.getElementById("videoProgressBar");
+    var progressWrap = document.getElementById("videoProgress");
+    if (!thumbsTrack || !labelsTrack) return;
+
+    // Arrows just cycle between the two slides now, so keep them always enabled.
+    function updateArrows() {
+      if (prevBtn) prevBtn.disabled = false;
+      if (nextBtn) nextBtn.disabled = false;
+    }
+
+    function stopProgress() {
+      clearTimeout(videoProgressTimer);
+      videoProgressTimer = null;
+      if (progressBar) {
+        progressBar.style.transition = "none";
+        progressBar.style.width = "0%";
+      }
+    }
+
+    function startProgress() {
+      if (!progressBar) return;
+      if (progressWrap) progressWrap.style.opacity = "1";
+      progressBar.style.transition = "none";
+      progressBar.style.width = "0%";
+      // force reflow so the next width change actually animates
+      void progressBar.offsetWidth;
+      progressBar.style.transition = "width " + videoAutoplayMs + "ms linear";
+      progressBar.style.width = "100%";
+      videoProgressTimer = setTimeout(function () {
+        goTo((videoIndex + 1) % videoSlideCount);
+      }, videoAutoplayMs);
+    }
+
+    function goTo(i) {
+      // wrap around instead of clamping, so the countdown/autoplay
+      // and the arrows can cycle endlessly between the two videos
+      videoIndex = ((i % videoSlideCount) + videoSlideCount) % videoSlideCount;
+      var shift = "translateX(-" + (videoIndex * 50) + "%)";
+      thumbsTrack.style.transform = shift;
+      labelsTrack.style.transform = shift;
+      dots.forEach(function (d, di) { d.classList.toggle("is-active", di === videoIndex); });
+      updateArrows();
+      // every time we land on a slide - whether from autoplay finishing,
+      // or the user clicking a dot/arrow - restart the countdown fresh
+      stopProgress();
+      startProgress();
+    }
+
+    dots.forEach(function (d) {
+      d.addEventListener("click", function () {
+        goTo(parseInt(d.getAttribute("data-index"), 10));
+      });
+    });
+    if (prevBtn) prevBtn.addEventListener("click", function () {
+      goTo(videoIndex - 1);
+    });
+    if (nextBtn) nextBtn.addEventListener("click", function () {
+      goTo(videoIndex + 1);
+    });
+
+    updateArrows();
+    startProgress();
   }
 
   document.addEventListener("DOMContentLoaded", function () {
@@ -200,5 +276,6 @@
     initTransitions();
     initContactForm();
     initVideoCard();
+    initVideoCarousel();
   });
 })();

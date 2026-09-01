@@ -58,22 +58,66 @@
         </div>
       </div>
 
-      <div class="video-card reveal reveal-right" style="transition-delay:.18s;" data-youtube-card data-yt-id="BUdp-Yn4ZK0">
-        <div class="video-card__thumb">
-          <span class="video-card__corner video-card__corner--tl"></span>
-          <span class="video-card__corner video-card__corner--tr"></span>
-          <span class="video-card__corner video-card__corner--bl"></span>
-          <span class="video-card__corner video-card__corner--br"></span>
-          <button class="video-card__playbtn" type="button" aria-label="Play the SnapRes showcase video">
-            <img src="https://img.youtube.com/vi/BUdp-Yn4ZK0/hqdefault.jpg" alt="SnapRes showcase video thumbnail" loading="eager">
-            <span class="video-card__play" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-            </span>
+      <div class="video-card reveal reveal-right" style="transition-delay:.18s;">
+        <div class="video-carousel__thumbs" id="videoThumbs">
+          <div class="video-carousel__track" id="videoThumbsTrack">
+            <div class="video-carousel__slide">
+              <div class="video-card__thumb" data-youtube-card data-yt-id="3N5q3WEW5oU">
+                <button class="video-card__playbtn" type="button" aria-label="Play the SnapRes v2.0 video">
+                  <img src="https://img.youtube.com/vi/3N5q3WEW5oU/hqdefault.jpg" alt="SnapRes v2.0 video thumbnail" loading="eager">
+                  <span class="video-card__play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+            <div class="video-carousel__slide">
+              <div class="video-card__thumb" data-youtube-card data-yt-id="BUdp-Yn4ZK0">
+                <span class="video-card__corner video-card__corner--tl"></span>
+                <span class="video-card__corner video-card__corner--tr"></span>
+                <span class="video-card__corner video-card__corner--bl"></span>
+                <span class="video-card__corner video-card__corner--br"></span>
+                <button class="video-card__playbtn" type="button" aria-label="Play the SnapRes showcase video">
+                  <img src="https://img.youtube.com/vi/BUdp-Yn4ZK0/hqdefault.jpg" alt="SnapRes showcase video thumbnail" loading="eager">
+                  <span class="video-card__play" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <button class="video-carousel__arrow video-carousel__arrow--prev" type="button" id="videoPrev" aria-label="Previous video">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          </button>
+          <button class="video-carousel__arrow video-carousel__arrow--next" type="button" id="videoNext" aria-label="Next video">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
           </button>
         </div>
-        <div class="video-card__label">
-          <span class="video-card__eyebrow" data-i18n="hero_video_eyebrow">SnapRes in action</span>
-          <span class="video-card__title" data-i18n="hero_video_title">Watch the full showcase on YouTube</span>
+
+        <div class="video-carousel__progress" id="videoProgress">
+          <div class="video-carousel__progress-bar" id="videoProgressBar"></div>
+        </div>
+
+        <div class="video-carousel__dots" id="videoDots">
+          <button class="video-carousel__dot is-active" type="button" data-index="0" aria-label="Show video 1"></button>
+          <button class="video-carousel__dot" type="button" data-index="1" aria-label="Show video 2"></button>
+        </div>
+
+        <div class="video-carousel__labels">
+          <div class="video-carousel__label-track" id="videoLabelsTrack">
+            <div class="video-carousel__label-slide">
+              <div class="video-card__label">
+                <span class="video-card__eyebrow">SnapRes in action</span>
+                <span class="video-card__title">Introducing SnapRes v2.0.0</span>
+              </div>
+            </div>
+            <div class="video-carousel__label-slide">
+              <div class="video-card__label">
+                <span class="video-card__eyebrow">SnapRes in action</span>
+                <span class="video-card__title">Watch the full showcase on YouTube</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
