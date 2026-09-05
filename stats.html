@@ -174,13 +174,13 @@
   }
 
   function showDashboard() {
+    buildGrid();
+    dashboardShown = true;
     gate.classList.add("is-hiding");
     setTimeout(function () {
       gate.style.display = "none";
       dashboard.style.display = "block";
-      buildGrid();
       requestAnimationFrame(function () { dashboard.classList.add("is-visible"); });
-      dashboardShown = true;
     }, 380);
   }
 
