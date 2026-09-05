@@ -104,7 +104,7 @@
   "use strict";
   var CFG = window.SNAPRES_CONFIG || {};
   var ENDPOINT = CFG.STATS_API || "";
-  var POLL_MS = 8000; // feels "live" without hammering the worker
+  var POLL_MS = 5000; // feels "live" without hammering the worker
 
   var gate = document.getElementById("gate");
   var dashboard = document.getElementById("dashboard");
