@@ -18,9 +18,10 @@
   ping("/api/hit");
 
   // Keep the "live now" count accurate while the tab stays open.
+  // (Interval kept long on purpose to limit KV write volume against the daily cap.)
   setInterval(function () {
     if (document.visibilityState === "visible") ping("/api/heartbeat");
-  }, 45000);
+  }, 180000);
 
   // Exposed so the download button can call this right before navigating away.
   window.SnapResTrackDownload = function () {
