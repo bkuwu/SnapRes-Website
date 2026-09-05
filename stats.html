@@ -127,7 +127,7 @@
     { key: "downloads_unique", label: "Unique downloaders" }
   ];
 
-  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+  function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
 
   // Animate a stat-card's number counting up (or down) to its new value,
   // instead of just snapping to it, so a live change actually reads as "live".
@@ -139,7 +139,7 @@
     function step(ts) {
       if (start === null) start = ts;
       var p = Math.min(1, (ts - start) / ms);
-      var val = Math.round(from + (to - from) * easeOutCubic(p));
+      var val = Math.round(from + (to - from) * easeOutQuart(p));
       el.textContent = val.toLocaleString();
       if (p < 1) requestAnimationFrame(step);
     }
@@ -162,7 +162,7 @@
       var numEl = card.querySelector("[data-num]");
       var newVal = Number(data[f.key]) || 0;
       var oldVal = lastValues[f.key];
-      animateNum(numEl, oldVal === undefined ? 0 : oldVal, newVal, 700);
+      animateNum(numEl, oldVal === undefined ? 0 : oldVal, newVal, 1600);
       if (oldVal !== undefined && newVal !== oldVal) {
         card.classList.remove("flash");
         void card.offsetWidth; // restart animation
