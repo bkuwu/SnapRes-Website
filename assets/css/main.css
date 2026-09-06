@@ -13,30 +13,13 @@ html, body {
 
 body {
   background-image:
-    radial-gradient(circle, color-mix(in srgb, var(--text-main) 8%, transparent) 0%, transparent 60%),
     radial-gradient(var(--border-soft) 1px, transparent 1px);
-  background-size: 220% 220%, 28px 28px;
-  background-position: 15% 20%, -14px -14px;
-  background-blend-mode: screen, normal;
-  animation: bg-glow-drift 70s ease-in-out infinite alternate;
+  background-size: 28px 28px;
+  background-position: -14px -14px;
   transition: background-color var(--dur-med) var(--ease-out), color var(--dur-med) var(--ease-out);
 }
 
-[data-theme="light"] body {
-  background-image:
-    radial-gradient(circle, color-mix(in srgb, var(--text-main) 5%, transparent) 0%, transparent 60%),
-    radial-gradient(var(--border) 1px, transparent 1px);
-  background-blend-mode: multiply, normal;
-}
-
-@keyframes bg-glow-drift {
-  0%   { background-position: 10% 15%, -14px -14px; }
-  50%  { background-position: 85% 65%, -14px -14px; }
-  100% { background-position: 30% 85%, -14px -14px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  body { animation: none; }
-}
+[data-theme="light"] body { background-image: radial-gradient(var(--border) 1px, transparent 1px); }
 
 ::selection { background: var(--text-main); color: var(--bg); }
 
