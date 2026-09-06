@@ -58,63 +58,93 @@
         </div>
       </div>
 
-      <div class="video-card reveal reveal-right" style="transition-delay:.18s;">
-        <div class="video-carousel__thumbs" id="videoThumbs">
-          <div class="video-carousel__track" id="videoThumbsTrack">
-            <div class="video-carousel__slide">
-              <div class="video-card__thumb" data-youtube-card data-yt-id="3N5q3WEW5oU">
-                <button class="video-card__playbtn" type="button" aria-label="Play the SnapRes v2.0 video">
-                  <img src="https://img.youtube.com/vi/3N5q3WEW5oU/hqdefault.jpg" alt="SnapRes v2.0 video thumbnail" loading="eager">
-                  <span class="video-card__play" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  </span>
-                </button>
+      <div class="live-counter-card reveal reveal-right" style="transition-delay:.18s;">
+        <div class="live-counter-card__aurora" aria-hidden="true"></div>
+        <div class="live-counter-card__globe" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.7 3.8 6 3.8 9s-1.3 6.3-3.8 9c-2.5-2.7-3.8-6-3.8-9s1.3-6.3 3.8-9z"/></svg>
+        </div>
+        <div class="live-counter-card__badge">
+          <span class="live-counter-card__dot"></span>
+          <span data-i18n="live_badge">Live Right Now</span>
+        </div>
+        <div class="live-counter-card__number" id="liveUsersNum">0</div>
+        <p class="live-counter-card__caption" data-i18n="live_caption">people are using SnapRes right now, around the world.</p>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="section">
+  <div class="container" style="max-width:1240px;">
+    <div class="showrow" style="margin-bottom:0;">
+      <div class="reveal reveal-left showrow__text" style="order:1;">
+        <p class="eyebrow" data-i18n="videos_eyebrow">Watch It In Action</p>
+        <h2 style="font-size:clamp(26px,3vw,36px); margin:16px 0 16px;" data-i18n="videos_title">Explanatory videos, on YouTube</h2>
+        <p style="font-size:15.5px; max-width:440px;" data-i18n="videos_body">Prefer watching over reading? These walk through what SnapRes does and how it's set up, straight from the YouTube channel — good for a bit of guidance before you dive in.</p>
+        <span class="btn__bracket-frame snap-target" style="margin-top:30px;">
+          <span class="bracket bracket--tl"></span><span class="bracket bracket--tr"></span><span class="bracket bracket--bl"></span><span class="bracket bracket--br"></span>
+          <a class="btn btn--ghost" data-cfg="YOUTUBE_URL" href="https://www.youtube.com/@bkuuuuu" target="_blank" rel="noopener" data-i18n="videos_btn">Visit the YouTube channel</a>
+        </span>
+      </div>
+      <div class="reveal reveal-right showrow__image" style="order:2;">
+        <div class="video-card">
+          <div class="video-carousel__thumbs" id="videoThumbs">
+            <div class="video-carousel__track" id="videoThumbsTrack">
+              <div class="video-carousel__slide">
+                <div class="video-card__thumb" data-youtube-card data-yt-id="3N5q3WEW5oU">
+                  <button class="video-card__playbtn" type="button" aria-label="Play the SnapRes v2.0 video">
+                    <img src="https://img.youtube.com/vi/3N5q3WEW5oU/hqdefault.jpg" alt="SnapRes v2.0 video thumbnail" loading="lazy">
+                    <span class="video-card__play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <div class="video-carousel__slide">
+                <div class="video-card__thumb" data-youtube-card data-yt-id="BUdp-Yn4ZK0">
+                  <span class="video-card__corner video-card__corner--tl"></span>
+                  <span class="video-card__corner video-card__corner--tr"></span>
+                  <span class="video-card__corner video-card__corner--bl"></span>
+                  <span class="video-card__corner video-card__corner--br"></span>
+                  <button class="video-card__playbtn" type="button" aria-label="Play the SnapRes showcase video">
+                    <img src="https://img.youtube.com/vi/BUdp-Yn4ZK0/hqdefault.jpg" alt="SnapRes showcase video thumbnail" loading="lazy">
+                    <span class="video-card__play" aria-hidden="true">
+                      <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </span>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="video-carousel__slide">
-              <div class="video-card__thumb" data-youtube-card data-yt-id="BUdp-Yn4ZK0">
-                <span class="video-card__corner video-card__corner--tl"></span>
-                <span class="video-card__corner video-card__corner--tr"></span>
-                <span class="video-card__corner video-card__corner--bl"></span>
-                <span class="video-card__corner video-card__corner--br"></span>
-                <button class="video-card__playbtn" type="button" aria-label="Play the SnapRes showcase video">
-                  <img src="https://img.youtube.com/vi/BUdp-Yn4ZK0/hqdefault.jpg" alt="SnapRes showcase video thumbnail" loading="eager">
-                  <span class="video-card__play" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
-                  </span>
-                </button>
-              </div>
-            </div>
+            <button class="video-carousel__arrow video-carousel__arrow--prev" type="button" id="videoPrev" aria-label="Previous video">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+            </button>
+            <button class="video-carousel__arrow video-carousel__arrow--next" type="button" id="videoNext" aria-label="Next video">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
           </div>
-          <button class="video-carousel__arrow video-carousel__arrow--prev" type="button" id="videoPrev" aria-label="Previous video">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
-          </button>
-          <button class="video-carousel__arrow video-carousel__arrow--next" type="button" id="videoNext" aria-label="Next video">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
-          </button>
-        </div>
 
-        <div class="video-carousel__progress" id="videoProgress">
-          <div class="video-carousel__progress-bar" id="videoProgressBar"></div>
-        </div>
+          <div class="video-carousel__progress" id="videoProgress">
+            <div class="video-carousel__progress-bar" id="videoProgressBar"></div>
+          </div>
 
-        <div class="video-carousel__dots" id="videoDots">
-          <button class="video-carousel__dot is-active" type="button" data-index="0" aria-label="Show video 1"></button>
-          <button class="video-carousel__dot" type="button" data-index="1" aria-label="Show video 2"></button>
-        </div>
+          <div class="video-carousel__dots" id="videoDots">
+            <button class="video-carousel__dot is-active" type="button" data-index="0" aria-label="Show video 1"></button>
+            <button class="video-carousel__dot" type="button" data-index="1" aria-label="Show video 2"></button>
+          </div>
 
-        <div class="video-carousel__labels">
-          <div class="video-carousel__label-track" id="videoLabelsTrack">
-            <div class="video-carousel__label-slide">
-              <div class="video-card__label">
-                <span class="video-card__eyebrow">SnapRes in action</span>
-                <span class="video-card__title">Introducing SnapRes v2.0.0</span>
+          <div class="video-carousel__labels">
+            <div class="video-carousel__label-track" id="videoLabelsTrack">
+              <div class="video-carousel__label-slide">
+                <div class="video-card__label">
+                  <span class="video-card__eyebrow">SnapRes in action</span>
+                  <span class="video-card__title">Introducing SnapRes v2.0.0</span>
+                </div>
               </div>
-            </div>
-            <div class="video-carousel__label-slide">
-              <div class="video-card__label">
-                <span class="video-card__eyebrow">SnapRes in action</span>
-                <span class="video-card__title">Watch the full showcase on YouTube</span>
+              <div class="video-carousel__label-slide">
+                <div class="video-card__label">
+                  <span class="video-card__eyebrow">SnapRes in action</span>
+                  <span class="video-card__title">Watch the full showcase on YouTube</span>
+                </div>
               </div>
             </div>
           </div>
@@ -122,7 +152,7 @@
       </div>
     </div>
   </div>
-</header>
+</section>
 
 <div class="container hero-visual" style="padding-bottom:60px;">
   <div class="snapframe" style="display:block; max-width:640px; margin:0 auto;">
@@ -268,6 +298,7 @@
 
 <script src="/assets/js/config.js"></script>
 <script src="/assets/js/analytics.js"></script>
+<script src="/assets/js/live-counter.js"></script>
 <script src="/assets/js/i18n.js"></script>
 <script src="/assets/js/app.js"></script>
 </body>

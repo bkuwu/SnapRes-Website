@@ -62,6 +62,11 @@ window.SNAPRES_I18N = {
     footer_help: "Setup guide", footer_credits: "Credits",
     footer_lang: "Language",
     footer_copy: "SnapRes · built by bku · not affiliated with Riot Games or Valve.",
+    live_badge: "Live Right Now", live_caption: "people are using SnapRes right now, around the world.",
+    videos_eyebrow: "Watch It In Action", videos_title: "Explanatory videos, on YouTube",
+    videos_body: "Prefer watching over reading? These walk through what SnapRes does and how it's set up, straight from the YouTube channel — good for a bit of guidance before you dive in.",
+    videos_btn: "Visit the YouTube channel",
+    download_count_note: "Updates automatically every 10 seconds — no need to refresh the page.",
   },
   fr: {
     nav_home: "Accueil", nav_download: "Télécharger", nav_about: "À propos",

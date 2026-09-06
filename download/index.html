@@ -16,23 +16,42 @@
   border:1px solid var(--border); border-radius:99px;
   background:var(--panel);
   box-shadow:0 0 0 8px var(--glow);
+  transition:box-shadow .4s var(--ease-out), border-color .4s var(--ease-out);
 }
 .download-counter-badge .dot{
   width:8px; height:8px; border-radius:50%;
   background:var(--status-ok);
   box-shadow:0 0 0 4px color-mix(in srgb, var(--status-ok) 22%, transparent);
   flex:0 0 auto;
+  animation:dcbPulse 1.8s ease-out infinite;
+}
+@keyframes dcbPulse{
+  0%{ box-shadow:0 0 0 0 rgba(127,227,172,.55); }
+  70%{ box-shadow:0 0 0 9px rgba(127,227,172,0); }
+  100%{ box-shadow:0 0 0 0 rgba(127,227,172,0); }
 }
 .download-counter-badge .num{
   font-family:var(--font-title);
   font-size:22px;
   line-height:1;
   color:var(--text-main);
+  font-variant-numeric:tabular-nums;
 }
 .download-counter-badge .label{
   font-family:var(--font-body);
   font-size:13.5px;
   color:var(--text-dim);
+}
+.download-counter-badge.is-flashing{
+  border-color:var(--text-main);
+  box-shadow:0 0 0 8px var(--glow-strong);
+  animation:dcbFlash 1s var(--ease-out);
+}
+@keyframes dcbFlash{ 0%{ box-shadow:inset 0 0 0 999px var(--glow-strong), 0 0 0 8px var(--glow-strong); } 100%{ box-shadow:inset 0 0 0 999px transparent, 0 0 0 8px var(--glow); } }
+.download-counter-note{
+  margin-top:12px;
+  font-size:12px;
+  color:var(--text-dimmer);
 }
 </style>
 </head>
@@ -87,11 +106,12 @@
     </div>
     <p class="reveal" style="font-size:12.5px; color:var(--text-dimmer); margin-top:18px; transition-delay:.22s;" data-i18n="download_note">Windows 10 / 11 · Free installer</p>
     <div class="reveal" id="downloadCounter" style="display:none; transition-delay:.26s; text-align:center;">
-      <div class="download-counter-badge">
+      <div class="download-counter-badge" id="downloadCounterBadge">
         <span class="dot"></span>
         <span class="num" id="downloadCountNum">0</span>
         <span class="label" data-i18n="download_count_label">people have downloaded SnapRes so far</span>
       </div>
+      <p class="download-counter-note" data-i18n="download_count_note">Updates automatically every 10 seconds — no need to refresh the page.</p>
     </div>
   </div>
 </header>

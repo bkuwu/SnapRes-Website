@@ -11,7 +11,6 @@
 <style>
   .stats-page{ min-height:100vh; display:flex; align-items:center; justify-content:center; padding:150px 24px 90px; }
 
-  /* ---- gate ---- */
   .gate{
     position:relative; width:100%; max-width:380px; text-align:center;
     padding:48px 36px 40px;
@@ -35,7 +34,6 @@
   .err{ color:#ff6b6b; margin-top:14px; font-size:13px; min-height:14px; opacity:0; transform:translateY(-4px); transition:opacity .3s var(--ease-out), transform .3s var(--ease-out); }
   .err.is-shown{ opacity:1; transform:translateY(0); }
 
-  /* ---- dashboard ---- */
   .stats-wrap{ width:100%; max-width:900px; opacity:0; transform:translateY(22px); transition:opacity .6s var(--ease-out), transform .6s var(--ease-out); }
   .stats-wrap.is-visible{ opacity:1; transform:translateY(0); }
   .stats-wrap h1{ font-size:28px; }
@@ -56,6 +54,7 @@
   .stat-card.flash{ animation:cardflash 1s var(--ease-out); }
   @keyframes cardflash{ 0%{ box-shadow:inset 0 0 0 999px var(--glow-strong); } 100%{ box-shadow:inset 0 0 0 999px transparent; } }
   .refresh-note{ margin-top:26px; font-size:12.5px; color:var(--text-dimmer); text-align:center; }
+  .refresh-note.is-stale{ color:#ffb454; }
 </style>
 </head>
 <body data-page="stats">
@@ -104,7 +103,8 @@
   "use strict";
   var CFG = window.SNAPRES_CONFIG || {};
   var ENDPOINT = CFG.STATS_API || "";
-  var POLL_MS = 5000; // feels "live" without hammering the worker
+  var CONFIG_TOKEN = CFG.STATS_ADMIN_TOKEN || "";
+  var POLL_MS = 10000; // matches the Worker's edge-cache TTL, so this is as "live" as the data gets
 
   var gate = document.getElementById("gate");
   var dashboard = document.getElementById("dashboard");
@@ -119,18 +119,13 @@
 
   var FIELDS = [
     { key: "live_now", label: "Live right now", live: true },
-    { key: "pageviews_today", label: "Pageviews today" },
-    { key: "unique_visitors_today", label: "Unique visitors today" },
-    { key: "pageviews_total", label: "Pageviews (all-time)" },
-    { key: "unique_visitors_total", label: "Unique visitors (all-time)" },
-    { key: "downloads_total", label: "Downloads (all-time)" },
-    { key: "downloads_unique", label: "Unique downloaders" }
+    { key: "visitors_today", label: "Visitors today" },
+    { key: "visitors_total", label: "Visitors (all-time)" },
+    { key: "downloads_total", label: "Downloads (all-time)" }
   ];
 
   function easeOutQuart(t) { return 1 - Math.pow(1 - t, 4); }
 
-  // Animate a stat-card's number counting up (or down) to its new value,
-  // instead of just snapping to it, so a live change actually reads as "live".
   function animateNum(el, from, to, ms) {
     var start = null;
     from = Number(from) || 0;
@@ -170,7 +165,10 @@
       }
       lastValues[f.key] = newVal;
     });
-    note.textContent = "Updated " + new Date(data.generated_at).toLocaleTimeString() + " · refreshes every " + Math.round(POLL_MS / 1000) + "s";
+    note.classList.toggle("is-stale", !!data.stale);
+    note.textContent = data.stale
+      ? "Showing last known numbers — GoatCounter is temporarily unreachable · retrying every " + Math.round(POLL_MS / 1000) + "s"
+      : "Updated " + new Date(data.generated_at).toLocaleTimeString() + " · refreshes every " + Math.round(POLL_MS / 1000) + "s";
   }
 
   function showDashboard() {
@@ -224,6 +222,8 @@
 
   if (!ENDPOINT) {
     showError("STATS_API isn't set in config.js yet.");
+  } else if (CONFIG_TOKEN) {
+    fetchStats(CONFIG_TOKEN);
   } else {
     var saved = sessionStorage.getItem("snapres-stats-token");
     if (saved) fetchStats(saved);
