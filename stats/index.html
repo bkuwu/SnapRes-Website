@@ -167,7 +167,8 @@
     });
     note.classList.toggle("is-stale", !!data.stale);
     note.textContent = data.stale
-      ? "Showing last known numbers — GoatCounter is temporarily unreachable · retrying every " + Math.round(POLL_MS / 1000) + "s"
+      ? "Showing last known numbers — GoatCounter is temporarily unreachable · retrying every " + Math.round(POLL_MS / 1000) + "s" +
+        (data.stale_reason ? " — reason: " + data.stale_reason : "")
       : "Updated " + new Date(data.generated_at).toLocaleTimeString() + " · refreshes every " + Math.round(POLL_MS / 1000) + "s";
   }
 
