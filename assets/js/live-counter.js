@@ -41,7 +41,7 @@
     fetch(ENDPOINT + "/api/public-stats")
       .then(function (r) { return r.json(); })
       .then(function (data) {
-        var n = Number(data.live_now);
+        var n = Number(data.downloads);
         if (!isFinite(n) || n < 0) n = 0;
         animateTo(n);
       })
