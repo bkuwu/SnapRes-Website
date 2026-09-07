@@ -104,7 +104,7 @@
   var CFG = window.SNAPRES_CONFIG || {};
   var ENDPOINT = CFG.STATS_API || "";
   var CONFIG_TOKEN = CFG.STATS_ADMIN_TOKEN || "";
-  var POLL_MS = 10000; // matches the Worker's edge-cache TTL, so this is as "live" as the data gets
+  var POLL_MS = 15000;
 
   var gate = document.getElementById("gate");
   var dashboard = document.getElementById("dashboard");
@@ -161,7 +161,7 @@
       animateNum(numEl, oldVal === undefined ? 0 : oldVal, newVal, 1600);
       if (oldVal !== undefined && newVal !== oldVal) {
         card.classList.remove("flash");
-        void card.offsetWidth; // restart animation
+        void card.offsetWidth;
         card.classList.add("flash");
       }
       lastValues[f.key] = newVal;
@@ -225,6 +225,12 @@
   if (!ENDPOINT) {
     showError("STATS_API isn't set in config.js yet.");
   } else if (CONFIG_TOKEN) {
+    // Admin token is baked into config.js — skip the gate entirely, go straight to the dashboard.
+    buildGrid();
+    dashboardShown = true;
+    gate.style.display = "none";
+    dashboard.style.display = "block";
+    dashboard.classList.add("is-visible");
     fetchStats(CONFIG_TOKEN);
   } else {
     var saved = sessionStorage.getItem("snapres-stats-token");
