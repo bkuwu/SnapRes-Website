@@ -224,14 +224,6 @@
 
   if (!ENDPOINT) {
     showError("STATS_API isn't set in config.js yet.");
-  } else if (CONFIG_TOKEN) {
-    // Admin token is baked into config.js — skip the gate entirely, go straight to the dashboard.
-    buildGrid();
-    dashboardShown = true;
-    gate.style.display = "none";
-    dashboard.style.display = "block";
-    dashboard.classList.add("is-visible");
-    fetchStats(CONFIG_TOKEN);
   } else {
     var saved = sessionStorage.getItem("snapres-stats-token");
     if (saved) fetchStats(saved);
