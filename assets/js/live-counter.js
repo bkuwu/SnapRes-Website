@@ -12,7 +12,7 @@
     return;
   }
 
-  var POLL_MS = 6000;
+  var POLL_MS = 20000;
   var current = null;
 
   function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }

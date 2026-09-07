@@ -10,7 +10,7 @@
   var ENDPOINT = CFG.STATS_API || "";
   if (!ENDPOINT) return;
 
-  var POLL_MS = 10000;
+  var POLL_MS = 20000;
   var current = null;
   var shown = false;
 

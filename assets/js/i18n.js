@@ -66,7 +66,7 @@ window.SNAPRES_I18N = {
     videos_eyebrow: "Watch It In Action", videos_title: "Explanatory videos, on YouTube",
     videos_body: "Prefer watching over reading? These walk through what SnapRes does and how it's set up, straight from the YouTube channel — good for a bit of guidance before you dive in.",
     videos_btn: "Visit the YouTube channel",
-    download_count_note: "Updates automatically every 10 seconds.",
+    download_count_note: "Updates automatically every 20 seconds.",
   },
   fr: {
     nav_home: "Accueil", nav_download: "Télécharger", nav_about: "À propos",
