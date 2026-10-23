@@ -9,5 +9,7 @@ window.SNAPRES_CONFIG = {
   VERSION_LABEL: "v2.0.0",
   STATS_API: "https://snapres-stats.bku.workers.dev",
   GOATCOUNTER_URL: "https://snapres.goatcounter.com/count",
+  ADSENSE_CLIENT: "",
+  ADSENSE_SLOTS: { home: "", about: "", download: "" },
   STATS_ADMIN_TOKEN: "duK7pA22VGzR_s9-XgFRSivV1wzvhC8Q",
 };

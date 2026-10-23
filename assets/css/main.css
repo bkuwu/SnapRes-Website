@@ -768,3 +768,8 @@ hr.rule {
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
 }
+
+.ad-slot{max-width:970px;margin:56px auto;padding:0 24px;text-align:center;overflow:hidden}
+.ad-slot[hidden]{display:none}
+.ad-slot__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dimmer)}
+.ad-slot ins{min-height:90px}
