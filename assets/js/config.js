@@ -10,6 +10,6 @@ window.SNAPRES_CONFIG = {
   STATS_API: "https://snapres-stats.bku.workers.dev",
   GOATCOUNTER_URL: "https://snapres.goatcounter.com/count",
   ADSENSE_CLIENT: "ca-pub-4877016790191203",
-  ADSENSE_SLOTS: { home: "", about: "", download: "" },
+  ADSENSE_SLOTS: { home: "3546009598", about: "9337839432", download: "3600803736" },
   STATS_ADMIN_TOKEN: "duK7pA22VGzR_s9-XgFRSivV1wzvhC8Q",
 };
