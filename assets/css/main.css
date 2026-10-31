@@ -769,7 +769,17 @@ hr.rule {
   *, *::before, *::after { animation-duration: .001ms !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
 }
 
-.ad-slot{max-width:970px;margin:56px auto;padding:0 24px;text-align:center;overflow:hidden}
-.ad-slot[hidden]{display:none}
-.ad-slot__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dimmer)}
-.ad-slot ins{min-height:90px}
+.ad-rail{display:none;position:fixed;top:120px;width:160px;text-align:center;z-index:5}
+.ad-rail--left{left:calc(50% - var(--rail-w, 760px) / 2 - 180px)}
+.ad-rail--right{right:calc(50% - var(--rail-w, 760px) / 2 - 180px)}
+.ad-rail__label{display:block;margin-bottom:8px;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--text-dimmer)}
+.ad-rail ins{width:160px;min-height:600px}
+body[data-page="home"]{--rail-w:1440px}
+body[data-page="about"],body[data-page="download"]{--rail-w:1100px}
+@media (min-width:1816px) and (min-height:760px){
+  body[data-page="home"] .ad-rail:not([hidden]){display:block}
+}
+@media (min-width:1476px) and (min-height:760px){
+  body[data-page="about"] .ad-rail:not([hidden]),
+  body[data-page="download"] .ad-rail:not([hidden]){display:block}
+}
