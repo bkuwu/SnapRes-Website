@@ -3,46 +3,55 @@
 
   var el = document.getElementById("downloadCounter");
   var numEl = document.getElementById("downloadCountNum");
+  var badgeEl = document.getElementById("downloadCounterBadge");
   if (!el || !numEl) return;
 
   var CFG = window.SNAPRES_CONFIG || {};
-  var owner = CFG.GITHUB_OWNER;
-  var repo = CFG.GITHUB_REPO;
-  if (!owner || !repo) return;
+  var ENDPOINT = CFG.STATS_API || "";
+  if (!ENDPOINT) return;
 
-  function animateCount(target) {
-    var start = 0;
-    var duration = 1400;
+  var POLL_MS = 20000;
+  var current = null;
+  var shown = false;
+
+  function easeOutCubic(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateTo(target) {
+    var from = current === null ? 0 : current;
+    if (from === target) { numEl.textContent = target.toLocaleString(); return; }
+    var duration = current === null ? 1400 : 900;
     var startTime = null;
     function frame(ts) {
       if (!startTime) startTime = ts;
       var progress = Math.min((ts - startTime) / duration, 1);
-      // ease-out
-      var eased = 1 - Math.pow(1 - progress, 3);
-      numEl.textContent = Math.round(start + (target - start) * eased);
+      var eased = easeOutCubic(progress);
+      numEl.textContent = Math.round(from + (target - from) * eased).toLocaleString();
       if (progress < 1) requestAnimationFrame(frame);
     }
     requestAnimationFrame(frame);
+
+    if (current !== null && target !== current && badgeEl) {
+      badgeEl.classList.remove("is-flashing");
+      void badgeEl.offsetWidth;
+      badgeEl.classList.add("is-flashing");
+    }
+    current = target;
   }
 
-  fetch("https://api.github.com/repos/" + owner + "/" + repo + "/releases")
-    .then(function (r) { return r.json(); })
-    .then(function (releases) {
-      if (!Array.isArray(releases)) return;
-      var total = 0;
-      releases.forEach(function (release) {
-        (release.assets || []).forEach(function (asset) {
-          if (/\.exe$/i.test(asset.name)) {
-            total += asset.download_count || 0;
-          }
-        });
-      });
-      if (total <= 0 && !CFG.DOWNLOAD_COUNT_OFFSET) return; // nothing to show yet
-      total += CFG.DOWNLOAD_COUNT_OFFSET || 0;
-      el.style.display = "block";
-      animateCount(total);
-    })
-    .catch(function () {
-      // GitHub API unreachable or rate-limited, just stay hidden
-    });
+  function poll() {
+    fetch(ENDPOINT + "/api/public-stats")
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var total = Number(data.downloads) || 0;
+        if (!shown) {
+          shown = true;
+          el.style.display = "block";
+        }
+        animateTo(total);
+      })
+      .catch(function () {});
+  }
+
+  poll();
+  setInterval(poll, POLL_MS);
 })();

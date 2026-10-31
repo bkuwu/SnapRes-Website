@@ -207,7 +207,6 @@
     var progressWrap = document.getElementById("videoProgress");
     if (!thumbsTrack || !labelsTrack) return;
 
-    // Arrows just cycle between the two slides now, so keep them always enabled.
     function updateArrows() {
       if (prevBtn) prevBtn.disabled = false;
       if (nextBtn) nextBtn.disabled = false;
@@ -227,7 +226,6 @@
       if (progressWrap) progressWrap.style.opacity = "1";
       progressBar.style.transition = "none";
       progressBar.style.width = "0%";
-      // force reflow so the next width change actually animates
       void progressBar.offsetWidth;
       progressBar.style.transition = "width " + videoAutoplayMs + "ms linear";
       progressBar.style.width = "100%";
@@ -237,16 +235,12 @@
     }
 
     function goTo(i) {
-      // wrap around instead of clamping, so the countdown/autoplay
-      // and the arrows can cycle endlessly between the two videos
       videoIndex = ((i % videoSlideCount) + videoSlideCount) % videoSlideCount;
       var shift = "translateX(-" + (videoIndex * 50) + "%)";
       thumbsTrack.style.transform = shift;
       labelsTrack.style.transform = shift;
       dots.forEach(function (d, di) { d.classList.toggle("is-active", di === videoIndex); });
       updateArrows();
-      // every time we land on a slide - whether from autoplay finishing,
-      // or the user clicking a dot/arrow - restart the countdown fresh
       stopProgress();
       startProgress();
     }
