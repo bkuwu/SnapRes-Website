@@ -5,16 +5,20 @@
   var client = CFG.ADSENSE_CLIENT || "";
   if (!/^ca-pub-\d{10,}$/.test(client)) return;
 
-  var meta = document.createElement("meta");
-  meta.name = "google-adsense-account";
-  meta.content = client;
-  document.head.appendChild(meta);
+  if (!document.querySelector('meta[name="google-adsense-account"]')) {
+    var meta = document.createElement("meta");
+    meta.name = "google-adsense-account";
+    meta.content = client;
+    document.head.appendChild(meta);
+  }
 
-  var s = document.createElement("script");
-  s.async = true;
-  s.crossOrigin = "anonymous";
-  s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(client);
-  document.head.appendChild(s);
+  if (!document.querySelector('script[src*="adsbygoogle.js"]')) {
+    var s = document.createElement("script");
+    s.async = true;
+    s.crossOrigin = "anonymous";
+    s.src = "https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=" + encodeURIComponent(client);
+    document.head.appendChild(s);
+  }
 
   var slots = CFG.ADSENSE_SLOTS || {};
   var boxes = document.querySelectorAll("[data-ad-slot]");
