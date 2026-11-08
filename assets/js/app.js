@@ -261,6 +261,42 @@
     startProgress();
   }
 
+  function initCopyChips() {
+    document.querySelectorAll("[data-copy]").forEach(function (btn) {
+      var label = btn.querySelector("[data-copy-label]");
+      var original = label ? label.textContent : "";
+      var timer;
+      btn.addEventListener("click", function () {
+        var value = btn.getAttribute("data-copy");
+        var done = function () {
+          var dict = window.SNAPRES_I18N || {};
+          var lang = document.documentElement.lang || "en";
+          var msg = (dict[lang] && dict[lang].email_copied) || (dict.en && dict.en.email_copied) || "Copied";
+          if (label) label.textContent = msg;
+          btn.classList.add("is-copied");
+          clearTimeout(timer);
+          timer = setTimeout(function () {
+            if (label) label.textContent = original;
+            btn.classList.remove("is-copied");
+          }, 1800);
+        };
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(value).then(done, done);
+        } else {
+          var ta = document.createElement("textarea");
+          ta.value = value;
+          ta.style.position = "fixed";
+          ta.style.opacity = "0";
+          document.body.appendChild(ta);
+          ta.select();
+          try { document.execCommand("copy"); } catch (e) {}
+          document.body.removeChild(ta);
+          done();
+        }
+      });
+    });
+  }
+
   document.addEventListener("DOMContentLoaded", function () {
     applyConfig();
     initTheme();
@@ -269,6 +305,7 @@
     initReveals();
     initTransitions();
     initContactForm();
+    initCopyChips();
     initVideoCard();
     initVideoCarousel();
   });
